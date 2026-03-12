@@ -573,7 +573,7 @@ function switchTab(tab){
   document.querySelectorAll('.nav-btn').forEach(function(b,i){b.classList.toggle('active',TABS[i]===tab);});
 }
 
-/* ══ HELPERS ══ */
+/* ══  HELPERS  ══ */
 function activateSel(cls,idx,color){
   document.querySelectorAll('.'+cls).forEach(function(b,i){
     var on=i===idx;
