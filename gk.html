@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Reyan's GK Quiz - Printable</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Comic Sans MS', 'Chalkboard SE', cursive; background: #fff; color: #222; }
+
+  /* SCREEN STYLES */
+  .print-btn {
+    position: fixed; top: 16px; right: 16px; z-index: 999;
+    background: linear-gradient(135deg,#FF6B6B,#FF8E53);
+    color: #fff; border: none; border-radius: 30px;
+    padding: 12px 28px; font-size: 1rem; font-weight: bold;
+    cursor: pointer; font-family: inherit;
+    box-shadow: 0 4px 14px rgba(255,107,107,.5);
+  }
+  .print-btn:hover { transform: scale(1.05); }
+
+  .cover {
+    background: linear-gradient(135deg,#FF6B6B,#FF8E53,#FFC300);
+    padding: 48px 30px; text-align: center; margin-bottom: 30px;
+    border-radius: 0 0 40px 40px;
+  }
+  .cover h1 { font-size: 2.6rem; color: #fff; text-shadow: 2px 2px 6px rgba(0,0,0,0.2); }
+  .cover h2 { font-size: 1.3rem; color: #fff; opacity: .9; margin-top: 8px; }
+  .cover .stars { font-size: 2rem; margin: 12px 0 0; }
+
+  .page-wrap { max-width: 900px; margin: 0 auto; padding: 0 20px 40px; }
+
+  /* CATEGORY HEADER */
+  .cat-header {
+    display: flex; align-items: center; gap: 14px;
+    border-radius: 18px; padding: 14px 20px; margin: 28px 0 14px;
+    color: #fff;
+  }
+  .cat-header .cat-icon { font-size: 2rem; }
+  .cat-header .cat-title { font-size: 1.3rem; font-weight: 900; }
+  .cat-header .cat-count { font-size: .85rem; opacity: .85; margin-top: 2px; }
+
+  /* QUESTION GRID */
+  .q-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  /* QUESTION CARD */
+  .q-card {
+    border-radius: 16px;
+    padding: 14px 14px 12px;
+    position: relative;
+    border: 2px solid transparent;
+    page-break-inside: avoid;
+  }
+  .q-num {
+    position: absolute; top: 10px; right: 12px;
+    font-size: .65rem; font-weight: 900; opacity: .45;
+  }
+  .q-top { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; }
+  .q-em { font-size: 1.9rem; min-width: 34px; }
+  .q-text { font-size: .82rem; font-weight: 700; color: #222; line-height: 1.4; flex: 1; }
+  .q-ans {
+    display: flex; align-items: center; gap: 6px;
+    background: rgba(255,255,255,.7); border-radius: 10px;
+    padding: 6px 10px;
+  }
+  .q-ans .tick { font-size: .9rem; }
+  .q-ans .ans-text { font-size: .78rem; font-weight: 700; color: #333; }
+
+  /* FOOTER */
+  .footer {
+    text-align: center; margin-top: 40px; padding: 20px;
+    border-top: 3px dashed #FFD700;
+    font-size: .85rem; color: #888;
+  }
+  .footer b { color: #FF6B6B; }
+
+  /* PAGE BREAK */
+  .page-break { page-break-before: always; }
+
+  /* PRINT STYLES */
+  @media print {
+    .print-btn { display: none !important; }
+    body { background: #fff; }
+    .cover { border-radius: 0; margin-bottom: 20px; padding: 30px 20px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .cat-header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .q-card { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .q-grid { gap: 8px; }
+    .page-wrap { padding: 0 10px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<button class="print-btn" onclick="window.print()">🖨️ Print / Save as PDF</button>
+
+<div class="cover">
+  <div class="stars">🌟 🧠 🌟</div>
+  <h1>Reyan's GK Quiz Book</h1>
+  <h2>150 Questions &amp; Answers for Smart Kids!</h2>
+  <div class="stars">👦 Age 3+ &nbsp;|&nbsp; 12 Categories &nbsp;|&nbsp; 150 Questions</div>
+</div>
+
+<div class="page-wrap" id="content"></div>
+
+<div class="page-wrap">
+  <div class="footer">
+    Made with ❤️ for <b>Reyan Dutta</b> &nbsp;|&nbsp; Keep learning, keep growing! 🌱
+  </div>
+</div>
+
+<script>
+const cats = [
+  { name:"Personal & Daily Life", icon:"👦", color:"#E91E63", bg:"#FCE4EC", border:"#F48FB1" },
+  { name:"Colors",                icon:"🎨", color:"#F9A825", bg:"#FFFDE7", border:"#FFE082" },
+  { name:"Numbers",               icon:"🔢", color:"#1976D2", bg:"#E3F2FD", border:"#90CAF9" },
+  { name:"Shapes",                icon:"🔷", color:"#9C27B0", bg:"#F3E5F5", border:"#CE93D8" },
+  { name:"Animals",               icon:"🐾", color:"#FF8E53", bg:"#FFF3E0", border:"#FFCC80" },
+  { name:"Birds",                 icon:"🐦", color:"#29B6F6", bg:"#E1F5FE", border:"#81D4FA" },
+  { name:"Fruits",                icon:"🍎", color:"#FF6B6B", bg:"#FFEBEE", border:"#EF9A9A" },
+  { name:"Vegetables",            icon:"🥦", color:"#43A047", bg:"#E8F5E9", border:"#A5D6A7" },
+  { name:"Transport",             icon:"🚗", color:"#F57C00", bg:"#FFF3E0", border:"#FFCC80" },
+  { name:"Body Parts",            icon:"🧒", color:"#E91E63", bg:"#FCE4EC", border:"#F48FB1" },
+  { name:"India GK",              icon:"🇮🇳", color:"#FF6B00", bg:"#FFF3E0", border:"#FFCC80" },
+  { name:"Thinking Questions",    icon:"💡", color:"#6A1B9A", bg:"#F3E5F5", border:"#CE93D8" },
+];
+
+const questions = [
+  // 0 Personal
+  ["👦","What is your name?","My name is Reyan Dutta"],
+  ["🎈","How old are you?","I am 3 years old"],
+  ["🇮🇳","What country do you live in?","India"],
+  ["🏙️","What city do you live in?","Hyderabad"],
+  ["🛏️","Where do you sleep?","On my bed"],
+  ["💧","What do you drink when thirsty?","Water"],
+  ["🪥","What do you use to brush teeth?","Toothbrush"],
+  ["👟","What do you wear on your feet?","Shoes"],
+  ["🏫","Where do you go to study?","School"],
+  ["🎒","What do you use to carry books?","A bag"],
+  // 1 Colors
+  ["☀️","What color is the sun?","Yellow"],
+  ["🌿","What color is grass?","Green"],
+  ["🌤️","What color is the sky?","Blue"],
+  ["🥛","What color is milk?","White"],
+  ["🖤","What color is coal?","Black"],
+  ["🍌","What color is a banana?","Yellow"],
+  ["🍎","What color is an apple usually?","Red"],
+  ["🍊","What color is an orange fruit?","Orange"],
+  ["🍫","What color is chocolate?","Brown"],
+  ["🍓","What color is a strawberry?","Red"],
+  ["🍇","What color are grapes usually?","Green or Purple"],
+  ["🥕","What color is a carrot?","Orange"],
+  ["🍅","What color is a tomato?","Red"],
+  ["🍋","What color is a lemon?","Yellow"],
+  ["❄️","What color is snow?","White"],
+  // 2 Numbers
+  ["2️⃣","What comes after 1?","2"],
+  ["6️⃣","What comes after 5?","6"],
+  ["9️⃣","What comes before 10?","9"],
+  ["🖐️","How many fingers on one hand?","5 fingers"],
+  ["👀","How many eyes do we have?","2 eyes"],
+  ["👂","How many ears do we have?","2 ears"],
+  ["🐶","How many legs does a dog have?","4 legs"],
+  ["🚲","How many wheels does a bicycle have?","2 wheels"],
+  ["🚗","How many wheels does a car have?","4 wheels"],
+  ["📅","How many days in a week?","7 days"],
+  ["📆","How many months in a year?","12 months"],
+  ["🔟","What comes after 10?","11"],
+  ["4️⃣","What comes before 5?","4"],
+  ["8️⃣","Which is bigger: 8 or 3?","8 is bigger"],
+  ["2️⃣","Which is smaller: 2 or 7?","2 is smaller"],
+  // 3 Shapes
+  ["⭕","Which shape is like a ball?","Circle"],
+  ["🔺","Which shape has three sides?","Triangle"],
+  ["🟥","Which shape has four equal sides?","Square"],
+  ["🚪","Which shape looks like a door?","Rectangle"],
+  ["🥚","Which shape is like an egg?","Oval"],
+  ["⭐","Which shape has five points?","Star"],
+  ["🪙","Which shape is used for coins?","Circle"],
+  ["🪟","Which shape is used for windows?","Square or Rectangle"],
+  ["🍕","Which shape is a pizza slice?","Triangle"],
+  ["💎","Which shape looks like a kite?","Diamond"],
+  // 4 Animals
+  ["🐱","Which animal says meow?","Cat"],
+  ["🐶","Which animal says woof?","Dog"],
+  ["🐮","Which animal says moo?","Cow"],
+  ["🦁","Which animal is king of the jungle?","Lion"],
+  ["🐘","Which animal has a long trunk?","Elephant"],
+  ["🦓","Which animal has black and white stripes?","Zebra"],
+  ["🐸","Which animal jumps and croaks?","Frog"],
+  ["🥛","Which animal gives us milk?","Cow"],
+  ["🦒","Which animal has a very long neck?","Giraffe"],
+  ["🐒","Which animal likes bananas?","Monkey"],
+  ["🐪","Which animal has humps and lives in desert?","Camel"],
+  ["🐯","Which animal roars?","Lion and Tiger"],
+  ["🦘","Which animal carries babies in a pouch?","Kangaroo"],
+  ["🐢","Which animal moves very slowly?","Turtle"],
+  ["🐟","Which animal lives in water and has fins?","Fish"],
+  ["🐒","Which animal swings on trees?","Monkey"],
+  ["🐱","Which animal hunts mice?","Cat"],
+  ["🐳","Which animal is very big in the ocean?","Whale"],
+  ["🐷","Which animal is pink and likes mud?","Pig"],
+  ["🐴","Which animal says neigh?","Horse"],
+  // 5 Birds
+  ["🦚","Which bird is the national bird of India?","Peacock"],
+  ["🦆","Which bird says quack?","Duck"],
+  ["🦉","Which bird hoots at night?","Owl"],
+  ["🦜","Which bird is green and can talk?","Parrot"],
+  ["🦆","Which bird swims and quacks?","Duck"],
+  ["🦚","Which bird spreads colorful feathers?","Peacock"],
+  ["🐦","Which bird is small and chirps?","Sparrow"],
+  ["🐦","Which bird is black and says caw?","Crow"],
+  ["🥚","Which bird lays eggs?","All birds lay eggs"],
+  ["🦅","Which bird flies high in the sky?","Eagle"],
+  // 6 Fruits
+  ["🍌","Which fruit is yellow and long?","Banana"],
+  ["🍎","Which fruit keeps the doctor away?","Apple"],
+  ["🥭","What is the national fruit of India?","Mango"],
+  ["🍇","Which fruit grows in bunches?","Grapes"],
+  ["🍉","Which fruit has red inside and green outside?","Watermelon"],
+  ["🍍","Which fruit has a crown on top?","Pineapple"],
+  ["🥥","Which fruit grows on coconut tree?","Coconut"],
+  ["🍊","Which fruit is orange in color?","Orange"],
+  ["🍓","Which fruit is small and red?","Strawberry"],
+  ["🍉","Which fruit is juicy in summer?","Watermelon"],
+  // 7 Vegetables
+  ["🥕","Which vegetable is orange and rabbits like?","Carrot"],
+  ["🧅","Which vegetable makes you cry when cutting?","Onion"],
+  ["🥔","Which vegetable is used to make fries?","Potato"],
+  ["🍅","Which vegetable is round and red?","Tomato"],
+  ["🥬","Which vegetable is green and leafy?","Spinach"],
+  ["🍆","Which vegetable is purple?","Brinjal"],
+  ["🥒","Which vegetable is long and green?","Cucumber"],
+  ["🥔","Which vegetable grows underground?","Potato"],
+  ["🥒","Which vegetable is used in salad?","Cucumber"],
+  ["🥦","Which vegetable looks like a small tree?","Broccoli"],
+  // 8 Transport
+  ["✈️","Which vehicle flies in the sky?","Airplane"],
+  ["🚂","Which vehicle runs on tracks?","Train"],
+  ["⛵","Which vehicle sails in water?","Boat"],
+  ["🚲","Which vehicle has two wheels?","Bicycle"],
+  ["🚌","Which vehicle takes children to school?","School Bus"],
+  ["🚒","Which vehicle puts out fire?","Fire Truck"],
+  ["🚑","Which vehicle takes sick people to hospital?","Ambulance"],
+  ["🚁","Which vehicle flies with rotating blades?","Helicopter"],
+  ["🚗","Which vehicle runs on roads and carries people?","Car"],
+  ["🌊","Which vehicle travels under the sea?","Submarine"],
+  // 9 Body Parts
+  ["👀","Which body part helps you see?","Eyes"],
+  ["👂","Which body part helps you hear?","Ears"],
+  ["👃","Which body part helps you smell?","Nose"],
+  ["👅","Which body part helps you taste?","Tongue"],
+  ["🦵","Which body part helps you walk?","Legs"],
+  ["🖐️","Which body part helps you hold things?","Hands"],
+  ["🧠","Which body part helps you think?","Brain"],
+  ["❤️","Which body part pumps blood?","Heart"],
+  ["🦷","Which body part do we brush every day?","Teeth"],
+  ["🫁","Which body part helps us breathe?","Lungs"],
+  // 10 India GK
+  ["🗺️","What is the name of our country?","India"],
+  ["👨‍💼","Who is the Prime Minister of India?","Narendra Modi"],
+  ["🐯","What is the national animal of India?","Tiger"],
+  ["🦚","What is the national bird of India?","Peacock"],
+  ["🪷","What is the national flower of India?","Lotus"],
+  ["🥭","What is the national fruit of India?","Mango"],
+  ["🎶","What is the national anthem of India?","Jana Gana Mana"],
+  ["🎉","What do we celebrate on 15 August?","Independence Day"],
+  ["🥳","What do we celebrate on 26 January?","Republic Day"],
+  ["🇮🇳","What colors are in the Indian flag?","Saffron, White and Green"],
+  // 11 Thinking
+  ["☂️","What do we use when it rains?","Umbrella"],
+  ["🧥","What do we wear when it is cold?","Jacket"],
+  ["🛏️","What do we sleep on?","Bed"],
+  ["✂️","What do we use to cut paper?","Scissors"],
+  ["⏰","What do we use to tell time?","Clock"],
+  ["📱","What do we use to call someone far away?","Phone"],
+  ["🔦","What do we use to see in the dark?","Torch"],
+  ["🖊️","What do we use to write on a board?","Chalk or Marker"],
+  ["🪥","What do we use to clean our teeth?","Toothbrush"],
+  ["🔑","What do we use to open a lock?","Key"],
+  ["🍳","What do we use to cook food?","Stove"],
+  ["🥛","What do we drink in the morning often?","Milk"],
+  ["📚","What do we read to learn stories?","Book"],
+  ["🧹","What do we use to clean the floor?","Broom or Mop"],
+  ["🛍️","What do we use to carry groceries?","Bag"],
+  ["🛁","What do we use to dry our body after bath?","Towel"],
+  ["🧼","What do we use to wash hands?","Soap"],
+  ["🔭","What do we use to see far away?","Binoculars"],
+  ["🖍️","What do we use to draw pictures?","Crayons"],
+  ["🎵","What do we use to listen to music?","Speaker or Headphones"],
+];
+
+// Group questions by category
+const catBoundaries = [0,10,25,40,50,70,80,90,100,110,120,130,150];
+const content = document.getElementById('content');
+let html = '';
+
+cats.forEach(function(cat, ci) {
+  const start = catBoundaries[ci];
+  const end   = catBoundaries[ci+1];
+  const qs    = questions.slice(start, end);
+
+  html += '<div class="' + (ci > 0 ? 'page-break' : '') + '">';
+  html += '<div class="cat-header" style="background:' + cat.color + '">'
+        + '<span class="cat-icon">' + cat.icon + '</span>'
+        + '<div><div class="cat-title">' + cat.name + '</div>'
+        + '<div class="cat-count">' + qs.length + ' questions</div></div></div>';
+
+  html += '<div class="q-grid">';
+  qs.forEach(function(q, i) {
+    html += '<div class="q-card" style="background:' + cat.bg + ';border-color:' + cat.border + '">'
+          + '<div class="q-num">' + (i+1) + '</div>'
+          + '<div class="q-top">'
+          +   '<span class="q-em">' + q[0] + '</span>'
+          +   '<div class="q-text">' + q[1] + '</div>'
+          + '</div>'
+          + '<div class="q-ans">'
+          +   '<span class="tick">✅</span>'
+          +   '<span class="ans-text">' + q[2] + '</span>'
+          + '</div>'
+          + '</div>';
+  });
+  html += '</div></div>';
+});
+
+content.innerHTML = html;
+</script>
+</body>
+</html>
