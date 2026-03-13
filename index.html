@@ -6,288 +6,210 @@
 <title>Reyan's Learning World 🌟</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Baloo+2:wght@400;700;800&family=Fredoka+One&family=Poppins:wght@400;600;700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet"/>
 <style>
-/* ══════════════════════════════════════════
-   GLOBAL FONT & SIZE SETTINGS
-   Change these variables to update fonts/sizes
-   across ALL pages instantly!
-══════════════════════════════════════════ */
 :root {
-  /* ── FONT FAMILY ──
-     Option 1: 'Nunito', sans-serif       (Friendly, rounded — DEFAULT)
-     Option 2: 'Baloo 2', cursive         (Playful, bubbly)
-     Option 3: 'Fredoka One', cursive     (Bold, chunky kids font)
-     Option 4: 'Poppins', sans-serif      (Clean, modern, easy to read)
-     Option 5: 'Quicksand', sans-serif    (Soft, minimal, very readable)
-  */
   --font-main: 'Nunito', sans-serif;
-
-  /* ── FONT SIZES ──
-     Option 1 (Tiny):   0.78rem base
-     Option 2 (Small):  0.88rem base
-     Option 3 (Medium): 1rem base        (DEFAULT)
-     Option 4 (Large):  1.1rem base
-     Option 5 (XLarge): 1.25rem base
-  */
-  --font-size-base:   1rem;
-  --font-size-sm:     calc(var(--font-size-base) * 0.78);
-  --font-size-md:     calc(var(--font-size-base) * 0.88);
-  --font-size-lg:     calc(var(--font-size-base) * 1.15);
-  --font-size-xl:     calc(var(--font-size-base) * 1.5);
-  --font-size-xxl:    calc(var(--font-size-base) * 2.2);
-  --font-size-hero:   calc(var(--font-size-base) * 3);
-
-  /* ── COLORS (shared) ── */
-  --c1: #FF6B6B; --c2: #FF8E53; --c3: #FFC300;
-  --c4: #4CAF50; --c5: #2196F3; --c6: #9C27B0;
+  --font-size-base: 1.1rem; /* default for desktop = X-Large */
+  --font-size-sm:   calc(var(--font-size-base) * 0.78);
+  --font-size-md:   calc(var(--font-size-base) * 0.88);
+  --font-size-lg:   calc(var(--font-size-base) * 1.15);
+  --font-size-xl:   calc(var(--font-size-base) * 1.5);
+  --font-size-xxl:  calc(var(--font-size-base) * 2.2);
+  --font-size-hero: calc(var(--font-size-base) * 2.8);
+}
+/* Mobile default = Medium */
+@media(max-width:600px){
+  :root { --font-size-base: 1rem; }
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  font-family: var(--font-main);
-  font-size: var(--font-size-base);
-  min-height: 100vh;
-  background: #FFFDE7;
-  overflow-x: hidden;
-}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font-main);font-size:var(--font-size-base);min-height:100vh;background:#FFFDE7;overflow-x:hidden;}
 
-/* ══ PAGE SYSTEM ══ */
-.page { display: none; min-height: 100vh; }
-.page.active { display: block; }
+/* ── PAGES ── */
+.page{display:none;min-height:100vh;}
+.page.active{display:block;}
 
-/* ══ BACK BUTTON ══ */
-.back-btn {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 8px 18px; border-radius: 30px; border: none;
-  background: rgba(255,255,255,0.92); color: #FF6B6B;
-  font-family: var(--font-main); font-size: var(--font-size-md);
-  font-weight: 700; cursor: pointer;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.12); transition: all .2s;
-  position: fixed; top: 14px; left: 14px; z-index: 999;
-}
-.back-btn:hover { transform: scale(1.05); background: #fff; }
+/* ── BACK BTN ── */
+.back-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:30px;border:none;background:rgba(255,255,255,0.93);color:#FF6B6B;font-family:var(--font-main);font-size:var(--font-size-md);font-weight:700;cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,0.12);transition:all .2s;position:fixed;top:12px;left:12px;z-index:999;}
+.back-btn:hover{transform:scale(1.05);background:#fff;}
 
-/* ═══════════════════════════════════════
+/* ════════════════════════════════
    LANDING PAGE
-═══════════════════════════════════════ */
-#page-home {
-  background: linear-gradient(135deg, #FFFDE7 0%, #FFF3E0 50%, #FCE4EC 100%);
-}
-.bg-shapes { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
-.shape { position: absolute; border-radius: 50%; opacity: 0.07; animation: floatAnim 8s ease-in-out infinite; }
-.shape:nth-child(1){width:300px;height:300px;background:#FF6B6B;top:-80px;left:-80px;animation-delay:0s}
-.shape:nth-child(2){width:200px;height:200px;background:#FFD700;top:10%;right:-60px;animation-delay:1s}
-.shape:nth-child(3){width:150px;height:150px;background:#4CAF50;top:40%;left:-40px;animation-delay:2s}
-.shape:nth-child(4){width:250px;height:250px;background:#2196F3;bottom:-80px;right:-60px;animation-delay:1.5s}
-.shape:nth-child(5){width:180px;height:180px;background:#E91E63;bottom:15%;left:30%;animation-delay:3s}
-@keyframes floatAnim{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-22px) rotate(8deg)}}
+════════════════════════════════ */
+#page-home{background:linear-gradient(135deg,#FFFDE7 0%,#FFF3E0 50%,#FCE4EC 100%);}
+.bg-shapes{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
+.shape{position:absolute;border-radius:50%;opacity:0.07;animation:floatAnim 8s ease-in-out infinite;}
+.shape:nth-child(1){width:260px;height:260px;background:#FF6B6B;top:-70px;left:-70px;animation-delay:0s}
+.shape:nth-child(2){width:180px;height:180px;background:#FFD700;top:8%;right:-50px;animation-delay:1s}
+.shape:nth-child(3){width:130px;height:130px;background:#4CAF50;top:45%;left:-35px;animation-delay:2s}
+.shape:nth-child(4){width:220px;height:220px;background:#2196F3;bottom:-70px;right:-50px;animation-delay:1.5s}
+.shape:nth-child(5){width:160px;height:160px;background:#E91E63;bottom:12%;left:32%;animation-delay:3s}
+@keyframes floatAnim{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-20px) rotate(8deg)}}
 
-.home-wrap { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 30px 20px 60px; }
+.home-wrap{position:relative;z-index:1;max-width:860px;margin:0 auto;padding:18px 16px 40px;}
 
-/* Font settings panel */
-.settings-panel {
-  background: #fff; border-radius: 20px; padding: 16px 20px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.08); margin-bottom: 28px;
-}
-.settings-panel h3 { font-size: var(--font-size-md); color: #888; margin-bottom: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; }
-.settings-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 10px; }
-.settings-row label { font-size: var(--font-size-sm); font-weight: 700; color: #666; min-width: 80px; }
-.font-btn, .size-btn {
-  padding: 6px 14px; border-radius: 20px; border: 2px solid #eee;
-  background: #f9f9f9; cursor: pointer; font-size: var(--font-size-sm);
-  font-weight: 600; transition: all .18s; color: #555;
-}
-.font-btn:hover, .size-btn:hover { border-color: #FF6B6B; color: #FF6B6B; }
-.font-btn.active, .size-btn.active { background: #FF6B6B; color: #fff; border-color: #FF6B6B; }
-.font-btn { font-family: var(--font-main); }
-#btn-f1 { font-family: 'Nunito', sans-serif; }
-#btn-f2 { font-family: 'Baloo 2', cursive; }
-#btn-f3 { font-family: 'Fredoka One', cursive; }
-#btn-f4 { font-family: 'Poppins', sans-serif; }
-#btn-f5 { font-family: 'Quicksand', sans-serif; }
+/* ── SETTINGS (compact) ── */
+.settings-panel{background:rgba(255,255,255,0.85);border-radius:16px;padding:10px 16px;box-shadow:0 3px 12px rgba(0,0,0,0.07);margin-bottom:16px;display:flex;flex-wrap:wrap;align-items:center;gap:10px;}
+.settings-panel .s-label{font-size:var(--font-size-sm);font-weight:800;color:#999;text-transform:uppercase;letter-spacing:.4px;min-width:60px;}
+.settings-row{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.font-btn,.size-btn{padding:4px 11px;border-radius:16px;border:2px solid #eee;background:#f9f9f9;cursor:pointer;font-size:var(--font-size-sm);font-weight:600;transition:all .18s;color:#666;line-height:1.4;}
+.font-btn:hover,.size-btn:hover{border-color:#FF6B6B;color:#FF6B6B;}
+.font-btn.active,.size-btn.active{background:#FF6B6B;color:#fff;border-color:#FF6B6B;}
+#btn-f1{font-family:'Nunito',sans-serif;}
+#btn-f2{font-family:'Baloo 2',cursive;}
+#btn-f3{font-family:'Fredoka One',cursive;}
+#btn-f4{font-family:'Poppins',sans-serif;}
+#btn-f5{font-family:'Quicksand',sans-serif;}
+.s-divider{width:1px;height:24px;background:#eee;margin:0 4px;}
 
-/* Header */
-.home-header { text-align: center; margin-bottom: 36px; }
-.home-header .em-row { font-size: var(--font-size-xl); margin-bottom: 10px; animation: bounce 2s ease-in-out infinite; }
-@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-.home-header h1 {
-  font-size: var(--font-size-hero); font-weight: 900; line-height: 1.15; margin-bottom: 8px;
-  background: linear-gradient(135deg,#FF6B6B,#FF8E53,#FFC300,#4CAF50,#2196F3,#9C27B0);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-}
-.home-header .sub { font-size: var(--font-size-lg); color: #888; margin-bottom: 18px; }
-.welcome-card {
-  background: linear-gradient(135deg,#FF6B6B,#FF8E53);
-  border-radius: 22px; padding: 20px 28px; color: #fff;
-  font-size: var(--font-size-md); line-height: 1.8;
-  box-shadow: 0 8px 28px rgba(255,107,107,.32); max-width: 680px; margin: 0 auto;
-}
+/* ── HEADER ── */
+.home-header{text-align:center;margin-bottom:20px;}
+.home-header .em-row{font-size:var(--font-size-xl);margin-bottom:6px;animation:bounce 2s ease-in-out infinite;}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+.home-header h1{font-size:var(--font-size-hero);font-weight:900;line-height:1.15;margin-bottom:6px;background:linear-gradient(135deg,#FF6B6B,#FF8E53,#FFC300,#4CAF50,#2196F3,#9C27B0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.home-header .sub{font-size:var(--font-size-md);color:#888;margin-bottom:14px;}
+.welcome-card{background:linear-gradient(135deg,#FF6B6B,#FF8E53);border-radius:20px;padding:14px 22px;color:#fff;font-size:var(--font-size-md);line-height:1.7;box-shadow:0 6px 24px rgba(255,107,107,.3);max-width:660px;margin:0 auto;}
 
-/* Section title */
-.sec-title {
-  display: flex; align-items: center; gap: 10px;
-  font-size: var(--font-size-lg); font-weight: 800; color: #555; margin: 32px 0 14px;
-}
-.sec-title::after { content:''; flex:1; height:3px; border-radius:3px; background:linear-gradient(90deg,#FF6B6B44,transparent); }
+/* ── SECTION TITLE ── */
+.sec-title{display:flex;align-items:center;gap:8px;font-size:var(--font-size-lg);font-weight:800;color:#555;margin:18px 0 12px;}
+.sec-title::after{content:'';flex:1;height:3px;border-radius:3px;background:linear-gradient(90deg,#FF6B6B44,transparent);}
 
-/* Link cards grid */
-.links-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 16px; }
-.link-card {
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  gap: 10px; padding: 22px 14px; border-radius: 22px; text-decoration: none;
-  color: #fff; font-weight: 700; font-size: var(--font-size-md); text-align: center;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.13); transition: transform .2s, box-shadow .2s;
-  min-height: 130px; cursor: pointer; border: none; font-family: var(--font-main);
-}
-.link-card:hover { transform: translateY(-6px) scale(1.04); box-shadow: 0 14px 32px rgba(0,0,0,0.18); }
-.link-card .lc-icon { font-size: calc(var(--font-size-base)*2.6); }
-.link-card .lc-label { font-size: var(--font-size-md); line-height: 1.3; }
-.link-card small { font-size: var(--font-size-sm); font-weight: 400; opacity: .88; }
-.link-card .lc-arrow { font-size: var(--font-size-sm); opacity: .75; }
+/* ── LINK CARDS ── */
+.links-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:14px;}
+.link-card{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:18px 12px;border-radius:20px;text-decoration:none;color:#fff;font-weight:700;font-size:var(--font-size-md);text-align:center;box-shadow:0 5px 18px rgba(0,0,0,0.12);transition:transform .2s,box-shadow .2s;min-height:120px;cursor:pointer;border:none;font-family:var(--font-main);}
+.link-card:hover{transform:translateY(-5px) scale(1.04);box-shadow:0 12px 28px rgba(0,0,0,0.17);}
+.link-card .lc-icon{font-size:calc(var(--font-size-base)*2.4);}
+.link-card small{font-size:var(--font-size-sm);font-weight:400;opacity:.88;}
+.link-card .lc-arrow{font-size:var(--font-size-sm);opacity:.75;}
 
-.home-footer { text-align:center; margin-top:44px; font-size:var(--font-size-sm); color:#bbb; }
-.home-footer b { color:#FF6B6B; }
+.home-footer{text-align:center;margin-top:32px;font-size:var(--font-size-sm);color:#bbb;}
+.home-footer b{color:#FF6B6B;}
 
-/* ═══════════════════════════════════════
-   LEARNING APP PAGE
-═══════════════════════════════════════ */
-#page-learn {
-  font-family: var(--font-main);
-  background: #FFFDE7;
-}
-.learn-header {
-  background: linear-gradient(135deg,#FF6B6B,#FF8E53);
-  padding: 50px 16px 10px; text-align: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-.learn-header h1 { font-size: var(--font-size-xl); color:#fff; font-weight:900; text-shadow:2px 2px 6px rgba(0,0,0,0.2); }
-.snd-bar { display:flex; justify-content:center; align-items:center; gap:8px; margin-top:8px; }
-.snd-lbl { font-size:var(--font-size-sm); font-weight:bold; color:#fff; }
-.tog-wrap { position:relative; width:52px; height:26px; cursor:pointer; }
-.tog-wrap input { opacity:0; width:0; height:0; }
-.tog-sl { position:absolute; inset:0; background:rgba(255,255,255,.35); border-radius:26px; transition:.3s; }
-.tog-sl::before { content:''; position:absolute; width:20px; height:20px; left:3px; top:3px; background:#fff; border-radius:50%; transition:.3s; box-shadow:0 1px 4px rgba(0,0,0,.3); }
-.tog-wrap input:checked+.tog-sl { background:#4CAF50; }
-.tog-wrap input:checked+.tog-sl::before { transform:translateX(26px); }
+/* ════════════════════════════════
+   LEARNING APP
+════════════════════════════════ */
+#page-learn{font-family:var(--font-main);background:#FFFDE7;}
+.learn-header{background:linear-gradient(135deg,#FF6B6B,#FF8E53);padding:44px 16px 10px;text-align:center;box-shadow:0 4px 12px rgba(0,0,0,0.15);}
+.learn-header h1{font-size:var(--font-size-xl);color:#fff;font-weight:900;}
+.snd-bar{display:flex;justify-content:center;align-items:center;gap:8px;margin-top:7px;}
+.snd-lbl{font-size:var(--font-size-sm);font-weight:bold;color:#fff;}
+.tog-wrap{position:relative;width:50px;height:25px;cursor:pointer;}
+.tog-wrap input{opacity:0;width:0;height:0;}
+.tog-sl{position:absolute;inset:0;background:rgba(255,255,255,.35);border-radius:25px;transition:.3s;}
+.tog-sl::before{content:'';position:absolute;width:19px;height:19px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.3s;box-shadow:0 1px 4px rgba(0,0,0,.3);}
+.tog-wrap input:checked+.tog-sl{background:#4CAF50;}
+.tog-wrap input:checked+.tog-sl::before{transform:translateX(25px);}
+.app-body{display:flex;min-height:calc(100vh - 88px);}
+.sidebar{width:118px;min-width:118px;background:#fff;box-shadow:3px 0 10px rgba(0,0,0,.07);overflow-y:auto;padding:8px 5px;}
+.cat-grp{margin-bottom:8px;}
+.cat-grp-ttl{font-size:calc(var(--font-size-base)*0.6);font-weight:900;color:#bbb;text-transform:uppercase;letter-spacing:.4px;padding:0 4px 3px;}
+.nav-btn{display:flex;align-items:center;gap:5px;width:100%;padding:7px;border-radius:11px;border:none;background:transparent;cursor:pointer;font-family:var(--font-main);font-size:calc(var(--font-size-base)*0.75);font-weight:700;color:#555;transition:all .17s;text-align:left;margin-bottom:2px;}
+.nav-btn:hover{background:#FFF3E0;color:#FF6B6B;}
+.nav-btn.active{background:linear-gradient(135deg,#FF6B6B,#FF8E53);color:#fff;box-shadow:0 3px 9px rgba(255,107,107,.4);}
+.nav-icon{font-size:1rem;min-width:20px;text-align:center;}
+.lmain{flex:1;padding:12px;overflow-y:auto;}
+.lsec{display:none;max-width:660px;margin:0 auto;}
+.lsec.active{display:block;}
+.big-box{border-radius:22px;padding:16px 14px 12px;margin-bottom:12px;text-align:center;box-shadow:0 5px 20px rgba(0,0,0,.12);}
+.big-char{font-size:calc(var(--font-size-base)*4.2);font-weight:900;color:#fff;line-height:1;text-shadow:3px 3px 8px rgba(0,0,0,.2);}
+.big-sub{font-size:var(--font-size-xl);color:#fff;opacity:.92;margin-top:4px;}
+.sel-grid{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-bottom:12px;}
+.sel-btn{padding:5px 11px;border-radius:11px;border:none;background:#fff;color:#333;font-weight:700;font-size:var(--font-size-md);cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.12);transition:all .2s;font-family:var(--font-main);min-width:38px;text-align:center;}
+.sel-btn.active{color:#fff;transform:scale(1.12);}
+.cards-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;}
+.card{background:#fff;border-radius:14px;padding:9px 4px 7px;text-align:center;box-shadow:0 3px 9px rgba(0,0,0,.08);transition:transform .17s;cursor:pointer;}
+.card:hover{transform:translateY(-3px) scale(1.04);}
+.card-em{font-size:calc(var(--font-size-base)*2.3);display:block;margin-bottom:3px;}
+.card-lbl{font-size:calc(var(--font-size-base)*0.68);font-weight:700;color:#333;line-height:1.3;}
+.first-ch{font-size:calc(var(--font-size-base)*0.83);}
+.count-box{background:#fff;border-radius:17px;padding:14px;min-height:85px;display:flex;flex-wrap:wrap;gap:7px;justify-content:center;align-items:center;box-shadow:0 3px 11px rgba(0,0,0,.08);margin-bottom:11px;}
+.count-em{font-size:calc(var(--font-size-base)*2.6);animation:popIn .3s ease forwards;opacity:0;cursor:pointer;}
+.zero-msg{font-size:var(--font-size-lg);color:#aaa;text-align:center;width:100%;}
+.color-swatch{width:86px;height:86px;border-radius:50%;margin:0 auto 9px;box-shadow:0 5px 15px rgba(0,0,0,.2);border:5px solid rgba(255,255,255,.6);}
+.opp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;}
+.opp-pair{background:#fff;border-radius:15px;padding:11px 7px;box-shadow:0 3px 9px rgba(0,0,0,.08);display:flex;align-items:center;justify-content:center;gap:7px;cursor:pointer;transition:transform .17s;}
+.opp-pair:hover{transform:scale(1.03);}
+.opp-side{text-align:center;flex:1;}
+.opp-em{font-size:calc(var(--font-size-base)*2);display:block;}
+.opp-word{font-size:calc(var(--font-size-base)*0.68);font-weight:700;margin-top:2px;}
+.opp-vs{font-size:var(--font-size-lg);font-weight:900;color:#ccc;}
+.info-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;}
+.info-card{background:#fff;border-radius:15px;padding:12px 10px;box-shadow:0 3px 9px rgba(0,0,0,.08);display:flex;align-items:center;gap:9px;cursor:pointer;transition:transform .17s;}
+.info-card:hover{transform:scale(1.02);}
+.info-em{font-size:calc(var(--font-size-base)*2);min-width:38px;text-align:center;}
+.info-key{font-size:calc(var(--font-size-base)*0.6);color:#aaa;font-weight:700;text-transform:uppercase;}
+.info-val{font-size:var(--font-size-md);font-weight:700;color:#333;margin-top:1px;}
+.solar-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;}
+.planet-card{background:#111;border-radius:15px;padding:11px 5px 9px;text-align:center;box-shadow:0 4px 13px rgba(0,0,0,.3);cursor:pointer;transition:transform .17s;}
+.planet-card:hover{transform:translateY(-3px) scale(1.05);}
+.planet-em{font-size:calc(var(--font-size-base)*2.2);display:block;margin-bottom:3px;}
+.planet-lbl{font-size:calc(var(--font-size-base)*0.66);font-weight:700;color:#fff;}
+.weather-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;}
+.weather-card{border-radius:18px;padding:16px 9px;text-align:center;box-shadow:0 4px 13px rgba(0,0,0,.11);cursor:pointer;transition:transform .17s;}
+.weather-card:hover{transform:scale(1.04);}
+.weather-em{font-size:calc(var(--font-size-base)*2.6);display:block;margin-bottom:5px;}
+.weather-lbl{font-size:var(--font-size-md);font-weight:700;}
+.weather-desc{font-size:var(--font-size-sm);margin-top:2px;opacity:.8;}
+.time-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:11px;}
+.time-card{border-radius:18px;padding:16px 11px;text-align:center;box-shadow:0 4px 13px rgba(0,0,0,.11);cursor:pointer;transition:transform .17s;}
+.time-card:hover{transform:scale(1.04);}
+.time-em{font-size:calc(var(--font-size-base)*2.6);display:block;margin-bottom:5px;}
+.time-lbl{font-size:var(--font-size-lg);font-weight:700;}
+.time-items{margin-top:7px;display:flex;flex-wrap:wrap;gap:4px;justify-content:center;}
+.time-tag{background:rgba(255,255,255,.5);border-radius:9px;padding:2px 7px;font-size:var(--font-size-sm);font-weight:700;}
 
-.app-body { display:flex; min-height:calc(100vh - 90px); }
-.sidebar {
-  width:130px; min-width:130px; background:#fff;
-  box-shadow:3px 0 12px rgba(0,0,0,.08); overflow-y:auto; padding:10px 6px;
-}
-.cat-grp { margin-bottom:10px; }
-.cat-grp-ttl { font-size:calc(var(--font-size-base)*0.62); font-weight:900; color:#bbb; text-transform:uppercase; letter-spacing:.5px; padding:0 4px 4px; }
-.nav-btn {
-  display:flex; align-items:center; gap:6px; width:100%;
-  padding:8px; border-radius:12px; border:none; background:transparent;
-  cursor:pointer; font-family:var(--font-main); font-size:calc(var(--font-size-base)*0.78);
-  font-weight:700; color:#555; transition:all .18s; text-align:left; margin-bottom:3px;
-}
-.nav-btn:hover { background:#FFF3E0; color:#FF6B6B; }
-.nav-btn.active { background:linear-gradient(135deg,#FF6B6B,#FF8E53); color:#fff; box-shadow:0 3px 10px rgba(255,107,107,.4); }
-.nav-icon { font-size:1.1rem; min-width:22px; text-align:center; }
-
-.lmain { flex:1; padding:14px; overflow-y:auto; }
-.lsec { display:none; max-width:680px; margin:0 auto; }
-.lsec.active { display:block; }
-
-.big-box { border-radius:24px; padding:18px 16px 14px; margin-bottom:14px; text-align:center; box-shadow:0 6px 22px rgba(0,0,0,.13); }
-.big-char { font-size:calc(var(--font-size-base)*4.5); font-weight:900; color:#fff; line-height:1; text-shadow:3px 3px 8px rgba(0,0,0,.2); }
-.big-sub  { font-size:var(--font-size-xl); color:#fff; opacity:.92; margin-top:4px; }
-.sel-grid { display:flex; flex-wrap:wrap; gap:6px; justify-content:center; margin-bottom:14px; }
-.sel-btn  { padding:6px 12px; border-radius:12px; border:none; background:#fff; color:#333; font-weight:700; font-size:var(--font-size-md); cursor:pointer; box-shadow:0 2px 6px rgba(0,0,0,.13); transition:all .2s; font-family:var(--font-main); min-width:40px; text-align:center; }
-.sel-btn.active { color:#fff; transform:scale(1.13); }
-.cards-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:9px; }
-.card { background:#fff; border-radius:15px; padding:10px 5px 8px; text-align:center; box-shadow:0 3px 10px rgba(0,0,0,.09); transition:transform .17s; cursor:pointer; }
-.card:hover { transform:translateY(-3px) scale(1.04); }
-.card-em { font-size:calc(var(--font-size-base)*2.4); display:block; margin-bottom:4px; }
-.card-lbl { font-size:calc(var(--font-size-base)*0.7); font-weight:700; color:#333; line-height:1.3; }
-.first-ch { font-size:calc(var(--font-size-base)*0.85); }
-.count-box { background:#fff; border-radius:18px; padding:16px; min-height:90px; display:flex; flex-wrap:wrap; gap:8px; justify-content:center; align-items:center; box-shadow:0 3px 12px rgba(0,0,0,.09); margin-bottom:12px; }
-.count-em { font-size:calc(var(--font-size-base)*2.7); animation:popIn .3s ease forwards; opacity:0; cursor:pointer; }
-.zero-msg { font-size:var(--font-size-lg); color:#aaa; text-align:center; width:100%; }
-.color-swatch { width:90px; height:90px; border-radius:50%; margin:0 auto 10px; box-shadow:0 5px 16px rgba(0,0,0,.2); border:5px solid rgba(255,255,255,.6); }
-.opp-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; }
-.opp-pair { background:#fff; border-radius:16px; padding:12px 8px; box-shadow:0 3px 10px rgba(0,0,0,.09); display:flex; align-items:center; justify-content:center; gap:8px; cursor:pointer; transition:transform .17s; }
-.opp-pair:hover { transform:scale(1.03); }
-.opp-side { text-align:center; flex:1; }
-.opp-em { font-size:calc(var(--font-size-base)*2.1); display:block; }
-.opp-word { font-size:calc(var(--font-size-base)*0.7); font-weight:700; margin-top:2px; }
-.opp-vs { font-size:var(--font-size-lg); font-weight:900; color:#ccc; }
-.info-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; }
-.info-card { background:#fff; border-radius:16px; padding:14px 12px; box-shadow:0 3px 10px rgba(0,0,0,.09); display:flex; align-items:center; gap:10px; cursor:pointer; transition:transform .17s; }
-.info-card:hover { transform:scale(1.02); }
-.info-em { font-size:calc(var(--font-size-base)*2.1); min-width:40px; text-align:center; }
-.info-key { font-size:calc(var(--font-size-base)*0.62); color:#aaa; font-weight:700; text-transform:uppercase; }
-.info-val { font-size:var(--font-size-md); font-weight:700; color:#333; margin-top:2px; }
-.solar-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:9px; }
-.planet-card { background:#111; border-radius:16px; padding:12px 6px 10px; text-align:center; box-shadow:0 4px 14px rgba(0,0,0,.3); cursor:pointer; transition:transform .17s; }
-.planet-card:hover { transform:translateY(-3px) scale(1.05); }
-.planet-em { font-size:calc(var(--font-size-base)*2.3); display:block; margin-bottom:4px; }
-.planet-lbl { font-size:calc(var(--font-size-base)*0.68); font-weight:700; color:#fff; }
-.weather-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
-.weather-card { border-radius:20px; padding:18px 10px; text-align:center; box-shadow:0 4px 14px rgba(0,0,0,.12); cursor:pointer; transition:transform .18s; }
-.weather-card:hover { transform:scale(1.04); }
-.weather-em { font-size:calc(var(--font-size-base)*2.8); display:block; margin-bottom:6px; }
-.weather-lbl { font-size:var(--font-size-md); font-weight:700; }
-.weather-desc { font-size:var(--font-size-sm); margin-top:3px; opacity:.8; }
-.time-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
-.time-card { border-radius:20px; padding:18px 12px; text-align:center; box-shadow:0 4px 14px rgba(0,0,0,.12); cursor:pointer; transition:transform .18s; }
-.time-card:hover { transform:scale(1.04); }
-.time-em { font-size:calc(var(--font-size-base)*2.8); display:block; margin-bottom:6px; }
-.time-lbl { font-size:var(--font-size-lg); font-weight:700; }
-.time-items { margin-top:8px; display:flex; flex-wrap:wrap; gap:5px; justify-content:center; }
-.time-tag { background:rgba(255,255,255,.5); border-radius:10px; padding:3px 8px; font-size:var(--font-size-sm); font-weight:700; }
-
-/* ═══════════════════════════════════════
-   GK QUIZ PAGE
-═══════════════════════════════════════ */
-#page-gk { background: #F8F0FF; font-family: var(--font-main); }
-.gk-header {
-  background: linear-gradient(135deg,#6A1B9A,#1565C0);
-  padding: 50px 16px 16px; text-align:center;
-  box-shadow: 0 4px 14px rgba(0,0,0,.2);
-}
-.gk-header h1 { font-size:var(--font-size-xl); color:#fff; font-weight:900; }
-.gk-header p  { font-size:var(--font-size-md); color:rgba(255,255,255,.85); margin-top:4px; }
-.gk-wrap { max-width:900px; margin:0 auto; padding:20px 16px 60px; }
-.gk-cat-section { margin-bottom:32px; }
-.gk-cat-hdr {
-  display:flex; align-items:center; gap:12px;
-  border-radius:16px; padding:12px 18px; margin-bottom:12px; color:#fff;
-}
-.gk-cat-hdr .gci { font-size:calc(var(--font-size-base)*1.8); }
-.gk-cat-hdr .gct { font-size:var(--font-size-lg); font-weight:900; }
-.gk-cat-hdr .gcc { font-size:var(--font-size-sm); opacity:.85; }
-.gk-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; }
-.gk-card { border-radius:16px; padding:14px 12px 10px; cursor:pointer; box-shadow:0 3px 12px rgba(0,0,0,.1); position:relative; transition:transform .18s; }
-.gk-card:hover { transform:translateY(-2px) scale(1.02); }
-.gk-num { position:absolute; top:9px; right:11px; font-size:var(--font-size-sm); font-weight:900; opacity:.35; }
-.gk-top { display:flex; align-items:flex-start; gap:9px; }
-.gk-em { font-size:calc(var(--font-size-base)*1.8); min-width:32px; }
-.gk-q { font-size:var(--font-size-md); font-weight:700; color:#222; line-height:1.45; flex:1; }
-.gk-ans { margin-top:9px; background:rgba(255,255,255,.75); border-radius:10px; padding:7px 10px; font-size:var(--font-size-md); font-weight:700; color:#333; display:none; }
-.gk-ans.show { display:block; animation:popIn .22s ease; }
-.gk-tap { font-size:var(--font-size-sm); color:#aaa; margin-top:5px; text-align:right; }
+/* ════════════════════════════════
+   GK PAGE
+════════════════════════════════ */
+#page-gk{background:#F3E8FF;font-family:var(--font-main);}
+.gk-header{background:linear-gradient(135deg,#6A1B9A,#1565C0);padding:44px 16px 14px;text-align:center;box-shadow:0 4px 14px rgba(0,0,0,.2);}
+.gk-header h1{font-size:var(--font-size-xl);color:#fff;font-weight:900;}
+.gk-header p{font-size:var(--font-size-md);color:rgba(255,255,255,.85);margin-top:3px;}
+.gk-snd-bar{display:flex;justify-content:center;align-items:center;gap:8px;margin-top:8px;}
+.gk-snd-lbl{font-size:var(--font-size-sm);font-weight:bold;color:#fff;}
+.gk-wrap{max-width:880px;margin:0 auto;padding:18px 14px 50px;}
+.gk-cat-section{margin-bottom:28px;}
+.gk-cat-hdr{display:flex;align-items:center;gap:11px;border-radius:15px;padding:11px 16px;margin-bottom:11px;color:#fff;}
+.gci{font-size:calc(var(--font-size-base)*1.7);}
+.gct{font-size:var(--font-size-lg);font-weight:900;}
+.gcc{font-size:var(--font-size-sm);opacity:.85;}
+.gk-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;}
+.gk-card{border-radius:15px;padding:12px 11px 10px;box-shadow:0 3px 11px rgba(0,0,0,.09);position:relative;}
+.gk-num{position:absolute;top:8px;right:10px;font-size:var(--font-size-sm);font-weight:900;opacity:.35;}
+.gk-top{display:flex;align-items:flex-start;gap:8px;margin-bottom:8px;}
+.gk-em{font-size:calc(var(--font-size-base)*1.7);min-width:30px;}
+.gk-q{font-size:var(--font-size-md);font-weight:700;color:#222;line-height:1.45;flex:1;}
+/* action buttons */
+.gk-actions{display:flex;gap:7px;margin-top:8px;}
+.gk-btn{flex:1;padding:6px 8px;border-radius:10px;border:none;font-family:var(--font-main);font-size:var(--font-size-sm);font-weight:700;cursor:pointer;transition:all .18s;display:flex;align-items:center;justify-content:center;gap:4px;}
+.gk-btn-read{background:#E3F2FD;color:#1565C0;}
+.gk-btn-read:hover{background:#1565C0;color:#fff;}
+.gk-btn-ans{background:#E8F5E9;color:#2E7D32;}
+.gk-btn-ans:hover{background:#2E7D32;color:#fff;}
+.gk-ans{margin-top:8px;background:rgba(255,255,255,.8);border-radius:10px;padding:7px 10px;font-size:var(--font-size-md);font-weight:700;color:#333;display:none;}
+.gk-ans.show{display:block;animation:popIn .22s ease;}
 
 @keyframes popIn{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
 
 /* ── RESPONSIVE ── */
 @media(max-width:600px){
-  .cards-grid,.gk-grid{grid-template-columns:repeat(3,1fr);}
-  .sidebar{width:100px;min-width:100px;}
-  .nav-btn{font-size:calc(var(--font-size-base)*0.7);padding:7px 5px;}
+  .cards-grid{grid-template-columns:repeat(3,1fr);}
+  .gk-grid{grid-template-columns:1fr;}
+  .sidebar{width:92px;min-width:92px;}
+  .nav-btn{font-size:calc(var(--font-size-base)*0.68);padding:6px 4px;}
   .solar-grid{grid-template-columns:repeat(3,1fr);}
   .info-grid{grid-template-columns:1fr;}
   .opp-grid{grid-template-columns:1fr;}
   .links-grid{grid-template-columns:repeat(2,1fr);}
+  .weather-grid{grid-template-columns:repeat(2,1fr);}
+  .time-grid{grid-template-columns:1fr;}
 }
 </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════
-     PAGE 1 — LANDING
-═══════════════════════════════════ -->
+<!-- ════════════════════════════
+     LANDING PAGE
+════════════════════════════ -->
 <div id="page-home" class="page active">
 <div class="bg-shapes">
   <div class="shape"></div><div class="shape"></div>
@@ -295,41 +217,38 @@ body {
 </div>
 <div class="home-wrap">
 
-  <!-- Font/Size Settings -->
+  <!-- Compact settings bar -->
   <div class="settings-panel">
-    <h3>🎨 Personalise — Font &amp; Size</h3>
+    <span class="s-label">🎨 Font</span>
     <div class="settings-row">
-      <label>Font Style</label>
       <button class="font-btn active" id="btn-f1" onclick="setFont('Nunito, sans-serif',this)">Nunito</button>
-      <button class="font-btn" id="btn-f2" onclick="setFont('Baloo 2, cursive',this)" style="font-family:'Baloo 2',cursive">Baloo</button>
-      <button class="font-btn" id="btn-f3" onclick="setFont('Fredoka One, cursive',this)" style="font-family:'Fredoka One',cursive">Fredoka</button>
-      <button class="font-btn" id="btn-f4" onclick="setFont('Poppins, sans-serif',this)" style="font-family:'Poppins',sans-serif">Poppins</button>
-      <button class="font-btn" id="btn-f5" onclick="setFont('Quicksand, sans-serif',this)" style="font-family:'Quicksand',sans-serif">Quicksand</button>
+      <button class="font-btn" id="btn-f2" onclick="setFont('Baloo 2, cursive',this)">Baloo</button>
+      <button class="font-btn" id="btn-f3" onclick="setFont('Fredoka One, cursive',this)">Fredoka</button>
+      <button class="font-btn" id="btn-f4" onclick="setFont('Poppins, sans-serif',this)">Poppins</button>
+      <button class="font-btn" id="btn-f5" onclick="setFont('Quicksand, sans-serif',this)">Quicksand</button>
     </div>
+    <div class="s-divider"></div>
+    <span class="s-label">📏 Size</span>
     <div class="settings-row">
-      <label>Font Size</label>
-      <button class="size-btn" onclick="setSize('0.78rem',this)">Tiny</button>
       <button class="size-btn" onclick="setSize('0.88rem',this)">Small</button>
-      <button class="size-btn active" onclick="setSize('1rem',this)">Medium</button>
-      <button class="size-btn" onclick="setSize('1.1rem',this)">Large</button>
-      <button class="size-btn" onclick="setSize('1.25rem',this)">X-Large</button>
+      <button class="size-btn" onclick="setSize('1rem',this)">Medium</button>
+      <button class="size-btn" onclick="setSize('1.1rem',this)" id="defSize">Large</button>
+      <button class="size-btn" onclick="setSize('1.2rem',this)">X-Large</button>
+      <button class="size-btn" onclick="setSize('1.35rem',this)">XX-Large</button>
     </div>
   </div>
 
-  <!-- Header -->
+  <!-- Header — compact -->
   <div class="home-header">
     <div class="em-row">🌟 📚 🎨 🔢 🌍</div>
     <h1>Reyan's Learning World</h1>
     <p class="sub">A fun place to learn, explore and grow! 🚀</p>
     <div class="welcome-card">
-      👋 <strong>Welcome, Reyan!</strong><br/>
-      This is your very own special learning space! Here you will find fun games,
-      colourful lessons about letters, numbers, animals, colours and so much more.
-      Tap any card below to start your adventure today!
-      You are <strong>smart, curious and amazing</strong> — keep exploring! 🌈
+      👋 <strong>Welcome, Reyan!</strong> — Your very own learning space with fun lessons on letters, numbers, animals, colours and more. You are <strong>smart, curious and amazing</strong> — tap a card to start! 🌈
     </div>
   </div>
 
+  <!-- Apps — immediately below header -->
   <div class="sec-title">🎯 My Learning Apps</div>
   <div class="links-grid">
     <button class="link-card" onclick="goTo('page-learn')" style="background:linear-gradient(135deg,#FF6B6B,#FF8E53)">
@@ -342,12 +261,12 @@ body {
       <span class="lc-label">GK Quiz<br/><small>150 Questions</small></span>
       <span class="lc-arrow">▶ Open</span>
     </button>
-    <button class="link-card" style="background:linear-gradient(135deg,#43A047,#00897B);opacity:.7;cursor:default">
+    <button class="link-card" style="background:linear-gradient(135deg,#43A047,#00897B);opacity:.65;cursor:default">
       <span class="lc-icon">🎨</span>
       <span class="lc-label">Coming Soon<br/><small>More fun ahead!</small></span>
       <span class="lc-arrow">🔜</span>
     </button>
-    <button class="link-card" style="background:linear-gradient(135deg,#1976D2,#29B6F6);opacity:.7;cursor:default">
+    <button class="link-card" style="background:linear-gradient(135deg,#1976D2,#29B6F6);opacity:.65;cursor:default">
       <span class="lc-icon">🎵</span>
       <span class="lc-label">Coming Soon<br/><small>More fun ahead!</small></span>
       <span class="lc-arrow">🔜</span>
@@ -355,20 +274,19 @@ body {
   </div>
 
   <div class="home-footer">
-    <div style="font-size:1.4rem;animation:bounce 1.5s ease-in-out infinite">❤️</div>
+    <div style="font-size:1.3rem">❤️</div>
     Made with love for <b>Reyan Dutta</b> &nbsp;|&nbsp; Keep learning, keep growing! 🌱
   </div>
 </div>
-</div><!-- end page-home -->
+</div>
 
-
-<!-- ═══════════════════════════════════
-     PAGE 2 — LEARNING APP
-═══════════════════════════════════ -->
+<!-- ════════════════════════════
+     LEARNING APP
+════════════════════════════ -->
 <div id="page-learn" class="page">
 <button class="back-btn" onclick="goTo('page-home')">← Home</button>
 <div class="learn-header">
-  <h1>🌟 Reyan's Learning App 🌟</h1>
+  <h1>🌟 Reyan's Learning App</h1>
   <div class="snd-bar">
     <span>🔇</span><span class="snd-lbl">Sound</span>
     <label class="tog-wrap"><input type="checkbox" id="sndTgl"/><span class="tog-sl"></span></label>
@@ -377,32 +295,28 @@ body {
 </div>
 <div class="app-body">
 <div class="sidebar">
-  <div class="cat-grp">
-    <div class="cat-grp-ttl">Basics</div>
+  <div class="cat-grp"><div class="cat-grp-ttl">Basics</div>
     <button class="nav-btn active" onclick="switchTab('alpha')"><span class="nav-icon">🔤</span>Alphabets</button>
     <button class="nav-btn" onclick="switchTab('num')"><span class="nav-icon">🔢</span>Numbers</button>
     <button class="nav-btn" onclick="switchTab('color')"><span class="nav-icon">🎨</span>Colors</button>
     <button class="nav-btn" onclick="switchTab('shapes')"><span class="nav-icon">🔷</span>Shapes</button>
   </div>
-  <div class="cat-grp">
-    <div class="cat-grp-ttl">Nature</div>
+  <div class="cat-grp"><div class="cat-grp-ttl">Nature</div>
     <button class="nav-btn" onclick="switchTab('animals')"><span class="nav-icon">🐾</span>Animals</button>
     <button class="nav-btn" onclick="switchTab('birds')"><span class="nav-icon">🐦</span>Birds</button>
     <button class="nav-btn" onclick="switchTab('fruits')"><span class="nav-icon">🍎</span>Fruits</button>
     <button class="nav-btn" onclick="switchTab('vegs')"><span class="nav-icon">🥦</span>Vegetables</button>
     <button class="nav-btn" onclick="switchTab('weather')"><span class="nav-icon">🌦️</span>Weather</button>
-    <button class="nav-btn" onclick="switchTab('solar')"><span class="nav-icon">🪐</span>Solar System</button>
+    <button class="nav-btn" onclick="switchTab('solar')"><span class="nav-icon">🪐</span>Solar</button>
   </div>
-  <div class="cat-grp">
-    <div class="cat-grp-ttl">World</div>
+  <div class="cat-grp"><div class="cat-grp-ttl">World</div>
     <button class="nav-btn" onclick="switchTab('transport')"><span class="nav-icon">🚗</span>Transport</button>
     <button class="nav-btn" onclick="switchTab('places')"><span class="nav-icon">🏫</span>Places</button>
     <button class="nav-btn" onclick="switchTab('helpers')"><span class="nav-icon">👨‍⚕️</span>Helpers</button>
     <button class="nav-btn" onclick="switchTab('body')"><span class="nav-icon">🧒</span>Body Parts</button>
-    <button class="nav-btn" onclick="switchTab('daily')"><span class="nav-icon">🏠</span>Daily Things</button>
+    <button class="nav-btn" onclick="switchTab('daily')"><span class="nav-icon">🏠</span>Daily</button>
   </div>
-  <div class="cat-grp">
-    <div class="cat-grp-ttl">Learn</div>
+  <div class="cat-grp"><div class="cat-grp-ttl">Learn</div>
     <button class="nav-btn" onclick="switchTab('opp')"><span class="nav-icon">↔️</span>Opposites</button>
     <button class="nav-btn" onclick="switchTab('time')"><span class="nav-icon">🕐</span>Time</button>
     <button class="nav-btn" onclick="switchTab('national')"><span class="nav-icon">🇮🇳</span>National</button>
@@ -410,86 +324,69 @@ body {
   </div>
 </div>
 <div class="lmain">
-  <div id="lsec-alpha"    class="lsec active"><div class="sel-grid" id="lg"></div><div class="big-box" id="lb"><div class="big-char" id="blc"></div><div class="big-sub" id="bls"></div></div><div class="cards-grid" id="ac"></div></div>
-  <div id="lsec-num"      class="lsec"><div class="sel-grid" id="ng"></div><div class="big-box" id="nb"><div class="big-char" id="bnc"></div><div class="big-sub" id="bns"></div></div><div class="count-box" id="cb"></div></div>
-  <div id="lsec-color"    class="lsec"><div class="sel-grid" id="cog"></div><div class="big-box" id="cob"><div class="color-swatch" id="csw"></div><div class="big-char" id="cnb" style="font-size:var(--font-size-xxl)"></div></div><div class="cards-grid" id="coCards"></div></div>
-  <div id="lsec-shapes"   class="lsec"><div class="sel-grid" id="shg"></div><div class="big-box" id="shb"><div class="big-char" id="shE"></div><div class="big-sub" id="shN"></div></div><div class="cards-grid" id="shCards"></div></div>
-  <div id="lsec-animals"  class="lsec"><div class="big-box" style="background:#FF8E53;box-shadow:0 6px 20px #FF8E5366"><div class="big-char">🐾</div><div class="big-sub">Animals</div></div><div class="cards-grid" id="anCards"></div></div>
-  <div id="lsec-birds"    class="lsec"><div class="big-box" style="background:#29B6F6;box-shadow:0 6px 20px #29B6F666"><div class="big-char">🐦</div><div class="big-sub">Birds</div></div><div class="cards-grid" id="biCards"></div></div>
-  <div id="lsec-fruits"   class="lsec"><div class="big-box" style="background:#FF6B6B;box-shadow:0 6px 20px #FF6B6B66"><div class="big-char">🍎</div><div class="big-sub">Fruits</div></div><div class="cards-grid" id="frCards"></div></div>
-  <div id="lsec-vegs"     class="lsec"><div class="big-box" style="background:#43A047;box-shadow:0 6px 20px #43A04766"><div class="big-char">🥦</div><div class="big-sub">Vegetables</div></div><div class="cards-grid" id="veCards"></div></div>
-  <div id="lsec-weather"  class="lsec"><div class="big-box" style="background:#0288D1;box-shadow:0 6px 20px #0288D166"><div class="big-char">🌦️</div><div class="big-sub">Weather</div></div><div class="weather-grid" id="weCards"></div></div>
-  <div id="lsec-solar"    class="lsec"><div class="big-box" style="background:#1a1a2e;box-shadow:0 6px 20px #1a1a2e88"><div class="big-char">🌌</div><div class="big-sub">Solar System</div></div><div class="solar-grid" id="solCards"></div></div>
-  <div id="lsec-transport" class="lsec"><div class="big-box" style="background:#F57C00;box-shadow:0 6px 20px #F57C0066"><div class="big-char">🚗</div><div class="big-sub">Transport</div></div><div class="cards-grid" id="trCards"></div></div>
-  <div id="lsec-places"   class="lsec"><div class="big-box" style="background:#5C6BC0;box-shadow:0 6px 20px #5C6BC066"><div class="big-char">🏫</div><div class="big-sub">Places Around Us</div></div><div class="cards-grid" id="plCards"></div></div>
-  <div id="lsec-helpers"  class="lsec"><div class="big-box" style="background:#00897B;box-shadow:0 6px 20px #00897B66"><div class="big-char">🤝</div><div class="big-sub">Community Helpers</div></div><div class="cards-grid" id="heCards"></div></div>
-  <div id="lsec-body"     class="lsec"><div class="big-box" style="background:#E91E63;box-shadow:0 6px 20px #E91E6366"><div class="big-char">🧒</div><div class="big-sub">Body Parts</div></div><div class="cards-grid" id="boCards"></div></div>
-  <div id="lsec-daily"    class="lsec"><div class="big-box" style="background:#7B1FA2;box-shadow:0 6px 20px #7B1FA266"><div class="big-char">🏠</div><div class="big-sub">Daily Things</div></div><div class="cards-grid" id="daCards"></div></div>
-  <div id="lsec-opp"      class="lsec"><div class="big-box" style="background:#00897B;box-shadow:0 6px 20px #00897B66"><div class="big-char">↔️</div><div class="big-sub">Opposites</div></div><div class="opp-grid" id="opCards"></div></div>
-  <div id="lsec-time"     class="lsec"><div class="big-box" style="background:#5C6BC0;box-shadow:0 6px 20px #5C6BC066"><div class="big-char">🕐</div><div class="big-sub">Time &amp; Routines</div></div><div class="time-grid" id="tmCards"></div></div>
-  <div id="lsec-national" class="lsec"><div class="big-box" style="background:#FF6B00;box-shadow:0 6px 20px #FF6B0066"><div class="big-char">🇮🇳</div><div class="big-sub">National Knowledge</div></div><div class="info-grid" id="naCards"></div></div>
-  <div id="lsec-personal" class="lsec"><div class="big-box" style="background:#E91E63;box-shadow:0 6px 20px #E91E6366"><div class="big-char">👦</div><div class="big-sub">About Me — Reyan!</div></div><div class="info-grid" id="peCards"></div></div>
+  <div id="lsec-alpha" class="lsec active"><div class="sel-grid" id="lg"></div><div class="big-box" id="lb"><div class="big-char" id="blc"></div><div class="big-sub" id="bls"></div></div><div class="cards-grid" id="ac"></div></div>
+  <div id="lsec-num" class="lsec"><div class="sel-grid" id="ng"></div><div class="big-box" id="nb"><div class="big-char" id="bnc"></div><div class="big-sub" id="bns"></div></div><div class="count-box" id="cb"></div></div>
+  <div id="lsec-color" class="lsec"><div class="sel-grid" id="cog"></div><div class="big-box" id="cob"><div class="color-swatch" id="csw"></div><div class="big-char" id="cnb" style="font-size:var(--font-size-xxl)"></div></div><div class="cards-grid" id="coCards"></div></div>
+  <div id="lsec-shapes" class="lsec"><div class="sel-grid" id="shg"></div><div class="big-box" id="shb"><div class="big-char" id="shE"></div><div class="big-sub" id="shN"></div></div><div class="cards-grid" id="shCards"></div></div>
+  <div id="lsec-animals" class="lsec"><div class="big-box" style="background:#FF8E53;box-shadow:0 5px 18px #FF8E5366"><div class="big-char">🐾</div><div class="big-sub">Animals</div></div><div class="cards-grid" id="anCards"></div></div>
+  <div id="lsec-birds" class="lsec"><div class="big-box" style="background:#29B6F6;box-shadow:0 5px 18px #29B6F666"><div class="big-char">🐦</div><div class="big-sub">Birds</div></div><div class="cards-grid" id="biCards"></div></div>
+  <div id="lsec-fruits" class="lsec"><div class="big-box" style="background:#FF6B6B;box-shadow:0 5px 18px #FF6B6B66"><div class="big-char">🍎</div><div class="big-sub">Fruits</div></div><div class="cards-grid" id="frCards"></div></div>
+  <div id="lsec-vegs" class="lsec"><div class="big-box" style="background:#43A047;box-shadow:0 5px 18px #43A04766"><div class="big-char">🥦</div><div class="big-sub">Vegetables</div></div><div class="cards-grid" id="veCards"></div></div>
+  <div id="lsec-weather" class="lsec"><div class="big-box" style="background:#0288D1;box-shadow:0 5px 18px #0288D166"><div class="big-char">🌦️</div><div class="big-sub">Weather</div></div><div class="weather-grid" id="weCards"></div></div>
+  <div id="lsec-solar" class="lsec"><div class="big-box" style="background:#1a1a2e;box-shadow:0 5px 18px #1a1a2e88"><div class="big-char">🌌</div><div class="big-sub">Solar System</div></div><div class="solar-grid" id="solCards"></div></div>
+  <div id="lsec-transport" class="lsec"><div class="big-box" style="background:#F57C00;box-shadow:0 5px 18px #F57C0066"><div class="big-char">🚗</div><div class="big-sub">Transport</div></div><div class="cards-grid" id="trCards"></div></div>
+  <div id="lsec-places" class="lsec"><div class="big-box" style="background:#5C6BC0;box-shadow:0 5px 18px #5C6BC066"><div class="big-char">🏫</div><div class="big-sub">Places Around Us</div></div><div class="cards-grid" id="plCards"></div></div>
+  <div id="lsec-helpers" class="lsec"><div class="big-box" style="background:#00897B;box-shadow:0 5px 18px #00897B66"><div class="big-char">🤝</div><div class="big-sub">Community Helpers</div></div><div class="cards-grid" id="heCards"></div></div>
+  <div id="lsec-body" class="lsec"><div class="big-box" style="background:#E91E63;box-shadow:0 5px 18px #E91E6366"><div class="big-char">🧒</div><div class="big-sub">Body Parts</div></div><div class="cards-grid" id="boCards"></div></div>
+  <div id="lsec-daily" class="lsec"><div class="big-box" style="background:#7B1FA2;box-shadow:0 5px 18px #7B1FA266"><div class="big-char">🏠</div><div class="big-sub">Daily Things</div></div><div class="cards-grid" id="daCards"></div></div>
+  <div id="lsec-opp" class="lsec"><div class="big-box" style="background:#00897B;box-shadow:0 5px 18px #00897B66"><div class="big-char">↔️</div><div class="big-sub">Opposites</div></div><div class="opp-grid" id="opCards"></div></div>
+  <div id="lsec-time" class="lsec"><div class="big-box" style="background:#5C6BC0;box-shadow:0 5px 18px #5C6BC066"><div class="big-char">🕐</div><div class="big-sub">Time &amp; Routines</div></div><div class="time-grid" id="tmCards"></div></div>
+  <div id="lsec-national" class="lsec"><div class="big-box" style="background:#FF6B00;box-shadow:0 5px 18px #FF6B0066"><div class="big-char">🇮🇳</div><div class="big-sub">National Knowledge</div></div><div class="info-grid" id="naCards"></div></div>
+  <div id="lsec-personal" class="lsec"><div class="big-box" style="background:#E91E63;box-shadow:0 5px 18px #E91E6366"><div class="big-char">👦</div><div class="big-sub">About Me — Reyan!</div></div><div class="info-grid" id="peCards"></div></div>
 </div>
 </div>
-</div><!-- end page-learn -->
+</div>
 
-
-<!-- ═══════════════════════════════════
-     PAGE 3 — GK QUIZ
-═══════════════════════════════════ -->
+<!-- ════════════════════════════
+     GK QUIZ
+════════════════════════════ -->
 <div id="page-gk" class="page">
 <button class="back-btn" onclick="goTo('page-home')">← Home</button>
 <div class="gk-header">
   <h1>🧠 GK Quiz</h1>
-  <p>150 Questions across 12 Categories — Tap to reveal answers!</p>
+  <p>150 Questions — 🔵 Read Question &nbsp;|&nbsp; 🟢 Show Answer</p>
+  <div class="gk-snd-bar">
+    <span>🔇</span><span class="gk-snd-lbl">Sound</span>
+    <label class="tog-wrap"><input type="checkbox" id="gkSndTgl"/><span class="tog-sl"></span></label>
+    <span>🔊</span>
+  </div>
 </div>
 <div class="gk-wrap" id="gkWrap"></div>
-</div><!-- end page-gk -->
-
+</div>
 
 <script>
-/* ══ PAGE NAVIGATION ══ */
-function goTo(id) {
-  document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active');});
-  document.getElementById(id).classList.add('active');
-  window.scrollTo(0,0);
-}
+/* ══ PAGE NAV ══ */
+function goTo(id){document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active');});document.getElementById(id).classList.add('active');window.scrollTo(0,0);}
 
-/* ══ FONT / SIZE SETTINGS ══ */
-function setFont(f, btn) {
-  document.documentElement.style.setProperty('--font-main', f);
-  document.querySelectorAll('.font-btn').forEach(function(b){b.classList.remove('active');});
-  btn.classList.add('active');
-}
-function setSize(s, btn) {
-  document.documentElement.style.setProperty('--font-size-base', s);
-  document.querySelectorAll('.size-btn').forEach(function(b){b.classList.remove('active');});
-  btn.classList.add('active');
-}
+/* ══ FONT / SIZE ══ */
+function setFont(f,btn){document.documentElement.style.setProperty('--font-main',f);document.querySelectorAll('.font-btn').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');}
+function setSize(s,btn){document.documentElement.style.setProperty('--font-size-base',s);document.querySelectorAll('.size-btn').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');}
+
+/* Set default active size button on load */
+document.getElementById('defSize').classList.add('active');
 
 /* ══ SOUND ══ */
 var _bv=null;
 function sndOn(){return document.getElementById('sndTgl').checked;}
-function getBV(){
-  if(_bv)return _bv;
-  var vs=window.speechSynthesis.getVoices();if(!vs.length)return null;
-  var p=['Google US English','Google UK English Female','Samantha','Karen','Moira'];
-  for(var i=0;i<p.length;i++){var v=vs.find(function(x){return x.name===p[i];});if(v){_bv=v;return v;}}
-  _bv=vs.find(function(v){return v.lang==='en-US';})||vs[0];return _bv;
-}
+function gkSndOn(){return document.getElementById('gkSndTgl').checked;}
+function getBV(){if(_bv)return _bv;var vs=window.speechSynthesis.getVoices();if(!vs.length)return null;var p=['Google US English','Google UK English Female','Samantha','Karen','Moira'];for(var i=0;i<p.length;i++){var v=vs.find(function(x){return x.name===p[i];});if(v){_bv=v;return v;}}_bv=vs.find(function(v){return v.lang==='en-US';})||vs[0];return _bv;}
 window.speechSynthesis.onvoiceschanged=function(){_bv=null;};
-function speak(t){
-  if(!sndOn())return;
-  window.speechSynthesis.cancel();
-  var u=new SpeechSynthesisUtterance(t);var v=getBV();if(v)u.voice=v;
-  u.lang='en-US';u.rate=0.82;u.pitch=1.1;u.volume=1;window.speechSynthesis.speak(u);
-}
-function speakSeq(arr){
-  if(!sndOn())return;window.speechSynthesis.cancel();
-  arr.forEach(function(t,i){var u=new SpeechSynthesisUtterance(t);var v=getBV();if(v)u.voice=v;u.lang='en-US';u.rate=i===0?0.72:0.82;u.pitch=i===0?1.25:1.1;u.volume=1;window.speechSynthesis.speak(u);});
-}
+function _speak(t){window.speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(t);var v=getBV();if(v)u.voice=v;u.lang='en-US';u.rate=0.82;u.pitch=1.1;u.volume=1;window.speechSynthesis.speak(u);}
+function speak(t){if(!sndOn())return;_speak(t);}
+function gkSpeak(t){if(!gkSndOn())return;_speak(t);}
+function speakSeq(arr){if(!sndOn())return;window.speechSynthesis.cancel();arr.forEach(function(t,i){var u=new SpeechSynthesisUtterance(t);var v=getBV();if(v)u.voice=v;u.lang='en-US';u.rate=i===0?0.72:0.82;u.pitch=i===0?1.25:1.1;u.volume=1;window.speechSynthesis.speak(u);});}
 
-/* ══ LEARN APP DATA ══ */
+/* ══ LEARN DATA ══ */
 var alphaData={A:{color:"#FF6B6B",words:[["Apple","🍎"],["Ant","🐜"],["Airplane","✈️"],["Alligator","🐊"],["Avocado","🥑"]]},B:{color:"#FF8E53",words:[["Ball","⚽"],["Butterfly","🦋"],["Banana","🍌"],["Bear","🐻"],["Boat","⛵"]]},C:{color:"#FFC300",words:[["Cat","🐱"],["Car","🚗"],["Cake","🎂"],["Cow","🐮"],["Cloud","☁️"]]},D:{color:"#A8E063",words:[["Dog","🐶"],["Duck","🦆"],["Diamond","💎"],["Drum","🥁"],["Dolphin","🐬"]]},E:{color:"#56D364",words:[["Elephant","🐘"],["Egg","🥚"],["Earth","🌍"],["Eye","👁️"],["Eagle","🦅"]]},F:{color:"#00C9A7",words:[["Fish","🐟"],["Flower","🌸"],["Frog","🐸"],["Fire","🔥"],["Flag","🚩"]]},G:{color:"#0097A7",words:[["Grapes","🍇"],["Giraffe","🦒"],["Ghost","👻"],["Guitar","🎸"],["Goat","🐐"]]},H:{color:"#1976D2",words:[["Horse","🐴"],["Hat","🎩"],["Heart","❤️"],["House","🏠"],["Honey","🍯"]]},I:{color:"#7B1FA2",words:[["Ice Cream","🍦"],["Island","🏝️"],["Igloo","🏔️"],["Insect","🐛"],["Ink","🖊️"]]},J:{color:"#C2185B",words:[["Jellyfish","🪼"],["Juice","🧃"],["Jar","🫙"],["Jaguar","🐆"],["Jet","🛩️"]]},K:{color:"#E91E63",words:[["Kite","🪁"],["Kangaroo","🦘"],["Key","🔑"],["Koala","🐨"],["King","👑"]]},L:{color:"#FF5722",words:[["Lion","🦁"],["Lemon","🍋"],["Leaf","🍃"],["Lamp","💡"],["Lobster","🦞"]]},M:{color:"#795548",words:[["Moon","🌙"],["Monkey","🐒"],["Mango","🥭"],["Mouse","🐭"],["Mushroom","🍄"]]},N:{color:"#607D8B",words:[["Nest","🪺"],["Nose","👃"],["Night","🌃"],["Noodle","🍜"],["Narwhal","🦭"]]},O:{color:"#FF7043",words:[["Orange","🍊"],["Octopus","🐙"],["Owl","🦉"],["Onion","🧅"],["Ostrich","🦤"]]},P:{color:"#8BC34A",words:[["Pizza","🍕"],["Penguin","🐧"],["Peach","🍑"],["Pig","🐷"],["Panda","🐼"]]},Q:{color:"#4CAF50",words:[["Queen","👸"],["Quail","🐦"],["Question","❓"],["Quilt","🛏️"],["Quarter","🪙"]]},R:{color:"#00BCD4",words:[["Rainbow","🌈"],["Rabbit","🐰"],["Robot","🤖"],["Rose","🌹"],["Rocket","🚀"]]},S:{color:"#2196F3",words:[["Sun","☀️"],["Star","⭐"],["Snake","🐍"],["Strawberry","🍓"],["Sheep","🐑"]]},T:{color:"#9C27B0",words:[["Tiger","🐯"],["Tree","🌳"],["Train","🚂"],["Turtle","🐢"],["Tomato","🍅"]]},U:{color:"#E040FB",words:[["Umbrella","☂️"],["Unicorn","🦄"],["UFO","🛸"],["Urchin","🦔"],["Ukulele","🎸"]]},V:{color:"#F06292",words:[["Violin","🎻"],["Van","🚐"],["Volcano","🌋"],["Vulture","🦅"],["Vest","👘"]]},W:{color:"#FF8A65",words:[["Watermelon","🍉"],["Wolf","🐺"],["Whale","🐳"],["Watch","⌚"],["Worm","🪱"]]},X:{color:"#A1887F",words:[["X-ray","🩻"],["Xylophone","🎵"],["Fox","🦊"],["Box","📦"],["Mix","🎛️"]]},Y:{color:"#DCE775",words:[["Yak","🦬"],["Yarn","🧶"],["Yawn","😪"],["Yacht","⛵"],["Yellow","💛"]]},Z:{color:"#80DEEA",words:[["Zebra","🦓"],["Zoo","🎪"],["Zucchini","🥬"],["Zero","0️⃣"],["Zipper","🤐"]]}};
 var numData=[{word:"Zero",color:"#B0BEC5",emoji:"",name:""},{word:"One",color:"#FF6B6B",emoji:"🍎",name:"Apple"},{word:"Two",color:"#FF8E53",emoji:"🐘",name:"Elephant"},{word:"Three",color:"#FFC300",emoji:"🐱",name:"Cat"},{word:"Four",color:"#8BC34A",emoji:"🍌",name:"Banana"},{word:"Five",color:"#00C9A7",emoji:"🐸",name:"Frog"},{word:"Six",color:"#1976D2",emoji:"🍓",name:"Strawberry"},{word:"Seven",color:"#7B1FA2",emoji:"🐥",name:"Chick"},{word:"Eight",color:"#E91E63",emoji:"🍊",name:"Orange"},{word:"Nine",color:"#FF5722",emoji:"🐠",name:"Fish"}];
 var colorData=[{name:"Red",bg:"#E53935",txt:"#fff",items:[["Apple","🍎"],["Rose","🌹"],["Tomato","🍅"],["Ladybug","🐞"],["Heart","❤️"]]},{name:"Blue",bg:"#1E88E5",txt:"#fff",items:[["Sky","🌀"],["Blueberry","🫐"],["Whale","🐳"],["Water","💧"],["Butterfly","🦋"]]},{name:"Yellow",bg:"#FDD835",txt:"#333",items:[["Sun","☀️"],["Banana","🍌"],["Star","⭐"],["Chick","🐥"],["Lemon","🍋"]]},{name:"Green",bg:"#43A047",txt:"#fff",items:[["Tree","🌳"],["Frog","🐸"],["Leaf","🍃"],["Broccoli","🥦"],["Turtle","🐢"]]},{name:"Orange",bg:"#FB8C00",txt:"#fff",items:[["Orange","🍊"],["Tiger","🐯"],["Pumpkin","🎃"],["Carrot","🥕"],["Fox","🦊"]]},{name:"Purple",bg:"#8E24AA",txt:"#fff",items:[["Grapes","🍇"],["Eggplant","🍆"],["Butterfly","🦋"],["Plum","🫐"],["Flower","💜"]]},{name:"Pink",bg:"#E91E63",txt:"#fff",items:[["Flamingo","🦩"],["Flower","🌸"],["Pig","🐷"],["Candy","🍬"],["Heart","🩷"]]},{name:"Brown",bg:"#6D4C41",txt:"#fff",items:[["Bear","🐻"],["Chocolate","🍫"],["Monkey","🐒"],["Bread","🍞"],["Acorn","🌰"]]},{name:"Black",bg:"#212121",txt:"#fff",items:[["Cat","🐈‍⬛"],["Crow","🐦‍⬛"],["Spider","🕷️"],["Hat","🎩"],["Panther","🐆"]]},{name:"White",bg:"#CFD8DC",txt:"#333",items:[["Rabbit","🐰"],["Sheep","🐑"],["Snowman","⛄"],["Egg","🥚"],["Swan","🦢"]]},{name:"Grey",bg:"#78909C",txt:"#fff",items:[["Elephant","🐘"],["Koala","🐨"],["Cloud","☁️"],["Rhino","🦏"],["Hippo","🦛"]]},{name:"Sky Blue",bg:"#29B6F6",txt:"#fff",items:[["Sky","🌤️"],["Bluebird","🐦"],["Ice","🧊"],["Pool","🏊"],["Balloon","🎈"]]},{name:"Maroon",bg:"#880E4F",txt:"#fff",items:[["Cherry","🍒"],["Pomegranate","🍎"],["Crab","🦀"],["Lobster","🦞"],["Flower","🌺"]]},{name:"Gold",bg:"#F9A825",txt:"#333",items:[["Trophy","🏆"],["Crown","👑"],["Star","🌟"],["Coin","🪙"],["Sun","🌞"]]},{name:"Silver",bg:"#90A4AE",txt:"#333",items:[["Robot","🤖"],["Key","🔑"],["Rocket","🚀"],["Mirror","🪞"],["Sword","⚔️"]]}];
@@ -506,34 +403,30 @@ var dailyData=[["Toothbrush","🪥"],["Soap","🧼"],["Towel","🛁"],["Bed","�
 var opposites=[["Big","🐘","Small","🐭"],["Hot","🔥","Cold","🧊"],["Day","☀️","Night","🌙"],["Happy","😊","Sad","😢"],["Fast","🐆","Slow","🐢"],["Up","⬆️","Down","⬇️"],["Open","📖","Closed","📕"],["Full","🪣","Empty","🫙"],["Clean","✨","Dirty","🤧"],["Tall","🦒","Short","🐛"],["Loud","📢","Quiet","🤫"],["Wet","🌧️","Dry","☀️"]];
 var weatherData=[{name:"Sunny",emoji:"☀️",bg:"#FDD835",txt:"#333",desc:"Bright and warm!",items:["😎","🌻","🧴","🕶️","🏖️"]},{name:"Rainy",emoji:"🌧️",bg:"#1E88E5",txt:"#fff",desc:"Get your umbrella!",items:["☂️","🌈","🥾","🐸","💧"]},{name:"Cloudy",emoji:"☁️",bg:"#78909C",txt:"#fff",desc:"Grey skies today!",items:["🧥","🌫️","🐦","🌥️","😶‍🌫️"]},{name:"Windy",emoji:"💨",bg:"#4DD0E1",txt:"#333",desc:"Hold your hat!",items:["🪁","🍃","🌬️","🧣","🎏"]},{name:"Snowy",emoji:"❄️",bg:"#B3E5FC",txt:"#333",desc:"Bundle up warm!",items:["⛄","🛷","🧤","🧣","🏔️"]},{name:"Stormy",emoji:"⛈️",bg:"#37474F",txt:"#fff",desc:"Stay indoors!",items:["⚡","🌪️","🌊","🏠","🕯️"]}];
 var solarData=[{name:"Sun",emoji:"☀️",color:"#FDD835",fact:"Our star!"},{name:"Mercury",emoji:"🪨",color:"#9E9E9E",fact:"Closest to Sun"},{name:"Venus",emoji:"🌟",color:"#FFA000",fact:"Hottest planet"},{name:"Earth",emoji:"🌍",color:"#1E88E5",fact:"Our home!"},{name:"Moon",emoji:"🌕",color:"#CFD8DC",fact:"Earth's moon"},{name:"Mars",emoji:"🔴",color:"#E53935",fact:"The red planet"},{name:"Jupiter",emoji:"🟤",color:"#795548",fact:"Largest planet"},{name:"Saturn",emoji:"🪐",color:"#F9A825",fact:"Has rings!"},{name:"Uranus",emoji:"🔵",color:"#00BCD4",fact:"Spins sideways"},{name:"Neptune",emoji:"💙",color:"#1565C0",fact:"Farthest planet"}];
-var timeData=[{name:"Morning",emoji:"🌅",bg:"#FF8F00",items:["⏰ Wake up","🪥 Brush teeth","🍳 Breakfast","👕 Get dressed","🎒 Go to school"]},{name:"Afternoon",emoji:"☀️",bg:"#F57F17",items:["📚 Study","🍱 Lunch","🏃 Play","💤 Rest","🎨 Art time"]},{name:"Evening",emoji:"🌆",bg:"#7B1FA2",items:["🏠 Come home","🍽️ Dinner","📺 TV time","🛁 Bath","📖 Story time"]},{name:"Night",emoji:"🌙",bg:"#1A237E",items:["😴 Sleep","⭐ Stars out","🌙 Moon rises","💤 Dream","🛏️ Bedtime"]},{name:"Today",emoji:"📅",bg:"#00695C",items:["🌞 Right now","📆 This day","🎯 Plan","✅ Do tasks","🎉 Enjoy!"]},{name:"Tomorrow",emoji:"🔜",bg:"#4527A0",items:["⏭️ Next day","🌅 New morning","📋 New plans","🌟 New chances","😊 Stay happy"]}];
-var nationalData=[{key:"Prime Minister",val:"Narendra Modi",em:"👨‍💼"},{key:"National Flag",val:"Tiranga — Saffron, White, Green",em:"🇮🇳"},{key:"National Song",val:"Vande Mataram",em:"🎵"},{key:"National Anthem",val:"Jana Gana Mana",em:"🎶"},{key:"National Animal",val:"Tiger",em:"🐯"},{key:"National Bird",val:"Peacock",em:"🦚"},{key:"National Flower",val:"Lotus",em:"🪷"},{key:"National Fruit",val:"Mango",em:"🥭"},{key:"National Tree",val:"Banyan Tree",em:"🌳"},{key:"National River",val:"Ganga",em:"🌊"},{key:"Capital City",val:"New Delhi",em:"🏛️"},{key:"Our Country",val:"India",em:"🗺️"}];
-var personalData=[{key:"My Name",val:"Reyan Dutta",em:"👦"},{key:"My Age",val:"3 Years Old",em:"🎈"},{key:"Father",val:"Sekhar Dutta",em:"👨"},{key:"Mother",val:"Sangita Sinha Dutta",em:"👩"},{key:"Grand Father",val:"Pulin Chandra Dutta",em:"👴"},{key:"Grand Mother",val:"Jaya Dutta",em:"👵"},{key:"My City",val:"Hyderabad",em:"🌆"},{key:"My Country",val:"India",em:"🗺️"},{key:"My Address",val:"My Home Mangala, Block 1, Kondapur, Hyderabad",em:"🏠"},{key:"My School",val:"Going to school soon!",em:"🏫"}];
+var timeData=[{name:"Morning",emoji:"🌅",bg:"#FF8F00",items:["⏰ Wake up","🪥 Brush teeth","🍳 Breakfast","👕 Get dressed","🎒 School"]},{name:"Afternoon",emoji:"☀️",bg:"#F57F17",items:["📚 Study","🍱 Lunch","🏃 Play","💤 Rest","🎨 Art"]},{name:"Evening",emoji:"🌆",bg:"#7B1FA2",items:["🏠 Come home","🍽️ Dinner","📺 TV","🛁 Bath","📖 Story"]},{name:"Night",emoji:"🌙",bg:"#1A237E",items:["😴 Sleep","⭐ Stars","🌙 Moon","💤 Dream","🛏️ Bed"]},{name:"Today",emoji:"📅",bg:"#00695C",items:["🌞 Now","📆 This day","🎯 Plan","✅ Do it","🎉 Enjoy"]},{name:"Tomorrow",emoji:"🔜",bg:"#4527A0",items:["⏭️ Next day","🌅 Morning","📋 Plans","🌟 Chances","😊 Happy"]}];
+var nationalData=[{key:"Prime Minister",val:"Narendra Modi",em:"👨‍💼"},{key:"National Flag",val:"Saffron, White, Green",em:"🇮🇳"},{key:"National Song",val:"Vande Mataram",em:"🎵"},{key:"National Anthem",val:"Jana Gana Mana",em:"🎶"},{key:"National Animal",val:"Tiger",em:"🐯"},{key:"National Bird",val:"Peacock",em:"🦚"},{key:"National Flower",val:"Lotus",em:"🪷"},{key:"National Fruit",val:"Mango",em:"🥭"},{key:"National Tree",val:"Banyan Tree",em:"🌳"},{key:"National River",val:"Ganga",em:"🌊"},{key:"Capital City",val:"New Delhi",em:"🏛️"},{key:"Our Country",val:"India",em:"🗺️"}];
+var personalData=[{key:"My Name",val:"Reyan Dutta",em:"👦"},{key:"My Age",val:"3 Years Old",em:"🎈"},{key:"Father",val:"Sekhar Dutta",em:"👨"},{key:"Mother",val:"Sangita Sinha Dutta",em:"👩"},{key:"Grand Father",val:"Pulin Chandra Dutta",em:"👴"},{key:"Grand Mother",val:"Jaya Dutta",em:"👵"},{key:"My City",val:"Hyderabad",em:"🌆"},{key:"My Country",val:"India",em:"🗺️"},{key:"My Address",val:"My Home Mangala, Block 1, Kondapur, Hyderabad",em:"🏠"},{key:"My School",val:"Little Millennium!",em:"🏫"}];
 
-/* ══ LEARN APP LOGIC ══ */
+/* ══ LEARN LOGIC ══ */
 var LTABS=['alpha','num','color','shapes','animals','birds','fruits','vegs','weather','solar','transport','places','helpers','body','daily','opp','time','national','personal'];
-function switchTab(tab){
-  LTABS.forEach(function(t){document.getElementById('lsec-'+t).classList.toggle('active',t===tab);});
-  document.querySelectorAll('.nav-btn').forEach(function(b,i){b.classList.toggle('active',LTABS[i]===tab);});
-}
-function actSel(cls,idx,col){document.querySelectorAll('.'+cls).forEach(function(b,i){var on=i===idx;b.classList.toggle('active',on);b.style.background=on?col:'#fff';b.style.color=on?'#fff':'#333';b.style.boxShadow=on?'0 4px 12px '+col+'88':'0 2px 6px rgba(0,0,0,0.13)';});}
-function mkCard(em,lbl,col,fl){var l=fl?'<span class="first-ch" style="color:'+col+'">'+lbl[0]+'</span>'+lbl.slice(1):lbl;return '<div class="card" style="border:3px solid '+col+'33" onclick="speak(\''+lbl.replace(/'/g,"\\'")+'\')" ><span class="card-em">'+em+'</span><div class="card-lbl">'+l+'</div></div>';}
-function sg(items,col,id){document.getElementById(id).innerHTML=items.map(function(x){return mkCard(x[1],x[0],col,false);}).join('');}
-function rL(l){var d=alphaData[l];actSel('lbtn',Object.keys(alphaData).indexOf(l),d.color);var b=document.getElementById('lb');b.style.background=d.color;b.style.boxShadow='0 6px 22px '+d.color+'66';document.getElementById('blc').textContent=l;document.getElementById('bls').textContent=l.toLowerCase();document.getElementById('ac').innerHTML=d.words.map(function(w){return mkCard(w[1],w[0],d.color,true);}).join('');speakSeq([l+'!'].concat(d.words.map(function(w){return l+' for '+w[0];})));}
-function rN(n){var d=numData[n];actSel('nbtn',n,d.color);var b=document.getElementById('nb');b.style.background=d.color;b.style.boxShadow='0 6px 22px '+d.color+'66';document.getElementById('bnc').textContent=n;document.getElementById('bns').textContent=d.word+(n>0?' '+d.name+(n>1?'s':''):'');var a=document.getElementById('cb');a.style.border='3px solid '+d.color+'44';if(n===0){a.innerHTML='<div class="zero-msg">Nothing here... Zero!</div>';}else{a.innerHTML=Array.from({length:n},function(_,i){return '<span class="count-em" style="animation-delay:'+i*.08+'s">'+d.emoji+'</span>';}).join('');}var ns=['One','Two','Three','Four','Five','Six','Seven','Eight','Nine'];speakSeq([d.word+'!'].concat(n>0?ns.slice(0,n):[]));}
-function rC(i){var d=colorData[i];actSel('cobtn',i,d.bg);var b=document.getElementById('cob');b.style.background=d.bg;b.style.boxShadow='0 6px 22px '+d.bg+'66';document.getElementById('csw').style.background=d.bg;var nm=document.getElementById('cnb');nm.textContent=d.name;nm.style.color=d.txt;document.getElementById('coCards').innerHTML=d.items.map(function(x){return mkCard(x[1],x[0],d.bg,false);}).join('');speakSeq([d.name+'!'].concat(d.items.map(function(x){return x[0]+' is '+d.name;})));}
-function rSh(i){var d=shapesData[i];actSel('shbtn',i,d.color);var b=document.getElementById('shb');b.style.background=d.color;b.style.boxShadow='0 6px 22px '+d.color+'66';document.getElementById('shE').textContent=d.emoji;document.getElementById('shN').textContent=d.name;document.getElementById('shCards').innerHTML=d.items.map(function(x){return mkCard(x[1],x[0],d.color,false);}).join('');speakSeq([d.name+'!'].concat(d.items.map(function(x){return x[0];})));}
-function bW(){document.getElementById('weCards').innerHTML=weatherData.map(function(w){return '<div class="weather-card" style="background:'+w.bg+'" onclick="speak(\''+w.name+'\')"><span class="weather-em">'+w.emoji+'</span><div class="weather-lbl" style="color:'+w.txt+'">'+w.name+'</div><div class="weather-desc" style="color:'+w.txt+'">'+w.desc+'</div><div style="margin-top:8px;font-size:1.4rem">'+w.items.join(' ')+'</div></div>';}).join('');}
-function bSol(){document.getElementById('solCards').innerHTML=solarData.map(function(p){return '<div class="planet-card" onclick="speak(\''+p.name+'. '+p.fact+'\')"><span class="planet-em">'+p.emoji+'</span><div class="planet-lbl" style="color:'+p.color+'">'+p.name+'</div><div style="font-size:.6rem;color:#aaa;margin-top:2px">'+p.fact+'</div></div>';}).join('');}
+function switchTab(t){LTABS.forEach(function(x){document.getElementById('lsec-'+x).classList.toggle('active',x===t);});document.querySelectorAll('.nav-btn').forEach(function(b,i){b.classList.toggle('active',LTABS[i]===t);});}
+function aS(cls,idx,col){document.querySelectorAll('.'+cls).forEach(function(b,i){var on=i===idx;b.classList.toggle('active',on);b.style.background=on?col:'#fff';b.style.color=on?'#fff':'#333';b.style.boxShadow=on?'0 4px 12px '+col+'88':'0 2px 6px rgba(0,0,0,0.12)';});}
+function mC(em,lbl,col,fl){var l=fl?'<span class="first-ch" style="color:'+col+'">'+lbl[0]+'</span>'+lbl.slice(1):lbl;return '<div class="card" style="border:3px solid '+col+'33" onclick="speak(\''+lbl.replace(/'/g,"\\'")+'\')"><span class="card-em">'+em+'</span><div class="card-lbl">'+l+'</div></div>';}
+function sg(it,col,id){document.getElementById(id).innerHTML=it.map(function(x){return mC(x[1],x[0],col,false);}).join('');}
+function rL(l){var d=alphaData[l];aS('lbtn',Object.keys(alphaData).indexOf(l),d.color);var b=document.getElementById('lb');b.style.background=d.color;b.style.boxShadow='0 6px 20px '+d.color+'66';document.getElementById('blc').textContent=l;document.getElementById('bls').textContent=l.toLowerCase();document.getElementById('ac').innerHTML=d.words.map(function(w){return mC(w[1],w[0],d.color,true);}).join('');speakSeq([l+'!'].concat(d.words.map(function(w){return l+' for '+w[0];})));}
+function rN(n){var d=numData[n];aS('nbtn',n,d.color);var b=document.getElementById('nb');b.style.background=d.color;b.style.boxShadow='0 6px 20px '+d.color+'66';document.getElementById('bnc').textContent=n;document.getElementById('bns').textContent=d.word+(n>0?' '+d.name+(n>1?'s':''):'');var a=document.getElementById('cb');a.style.border='3px solid '+d.color+'44';if(n===0){a.innerHTML='<div class="zero-msg">Nothing here... Zero!</div>';}else{a.innerHTML=Array.from({length:n},function(_,i){return '<span class="count-em" style="animation-delay:'+i*.08+'s">'+d.emoji+'</span>';}).join('');}var ns=['One','Two','Three','Four','Five','Six','Seven','Eight','Nine'];speakSeq([d.word+'!'].concat(n>0?ns.slice(0,n):[]));} 
+function rC(i){var d=colorData[i];aS('cobtn',i,d.bg);var b=document.getElementById('cob');b.style.background=d.bg;b.style.boxShadow='0 6px 20px '+d.bg+'66';document.getElementById('csw').style.background=d.bg;var nm=document.getElementById('cnb');nm.textContent=d.name;nm.style.color=d.txt;document.getElementById('coCards').innerHTML=d.items.map(function(x){return mC(x[1],x[0],d.bg,false);}).join('');speakSeq([d.name+'!'].concat(d.items.map(function(x){return x[0]+' is '+d.name;})));}
+function rSh(i){var d=shapesData[i];aS('shbtn',i,d.color);var b=document.getElementById('shb');b.style.background=d.color;b.style.boxShadow='0 6px 20px '+d.color+'66';document.getElementById('shE').textContent=d.emoji;document.getElementById('shN').textContent=d.name;document.getElementById('shCards').innerHTML=d.items.map(function(x){return mC(x[1],x[0],d.color,false);}).join('');speakSeq([d.name+'!'].concat(d.items.map(function(x){return x[0];})));}
+function bW(){document.getElementById('weCards').innerHTML=weatherData.map(function(w){return '<div class="weather-card" style="background:'+w.bg+'" onclick="speak(\''+w.name+'\')"><span class="weather-em">'+w.emoji+'</span><div class="weather-lbl" style="color:'+w.txt+'">'+w.name+'</div><div class="weather-desc" style="color:'+w.txt+'">'+w.desc+'</div><div style="margin-top:7px;font-size:1.3rem">'+w.items.join(' ')+'</div></div>';}).join('');}
+function bSol(){document.getElementById('solCards').innerHTML=solarData.map(function(p){return '<div class="planet-card" onclick="speak(\''+p.name+'. '+p.fact+'\')"><span class="planet-em">'+p.emoji+'</span><div class="planet-lbl" style="color:'+p.color+'">'+p.name+'</div><div style="font-size:.58rem;color:#aaa;margin-top:1px">'+p.fact+'</div></div>';}).join('');}
 function bTm(){document.getElementById('tmCards').innerHTML=timeData.map(function(t){return '<div class="time-card" style="background:'+t.bg+'" onclick="speak(\''+t.name+'\')"><span class="time-em">'+t.emoji+'</span><div class="time-lbl" style="color:#fff">'+t.name+'</div><div class="time-items">'+t.items.map(function(i){return '<span class="time-tag">'+i+'</span>';}).join('')+'</div></div>';}).join('');}
 function bOp(){document.getElementById('opCards').innerHTML=opposites.map(function(o){return '<div class="opp-pair" style="border:3px solid #00897B33" onclick="speakSeq([\''+o[0]+'\',\'opposite is\',\''+o[2]+'\'])"><div class="opp-side"><span class="opp-em">'+o[1]+'</span><div class="opp-word" style="color:#00897B">'+o[0]+'</div></div><div class="opp-vs">↔️</div><div class="opp-side"><span class="opp-em">'+o[3]+'</span><div class="opp-word" style="color:#00897B">'+o[2]+'</div></div></div>';}).join('');}
 function bInf(data,id,col){document.getElementById(id).innerHTML=data.map(function(d){return '<div class="info-card" style="border:3px solid '+col+'33" onclick="speak(\''+d.key+'. '+d.val.replace(/'/g,"\\'")+'\')"><div class="info-em">'+d.em+'</div><div><div class="info-key">'+d.key+'</div><div class="info-val">'+d.val+'</div></div></div>';}).join('');}
 
-/* ══ BUILD LEARN BUTTONS ══ */
 var lgEl=document.getElementById('lg');
 Object.keys(alphaData).forEach(function(l){var b=document.createElement('button');b.className='sel-btn lbtn';b.textContent=l;b.onclick=function(){rL(l);};lgEl.appendChild(b);});
 var ngEl=document.getElementById('ng');
-for(var i=0;i<=9;i++){(function(n){var b=document.createElement('button');b.className='sel-btn nbtn';b.textContent=n;b.style.fontSize='1.3rem';b.style.minWidth='48px';b.onclick=function(){rN(n);};ngEl.appendChild(b);})(i);}
+for(var i=0;i<=9;i++){(function(n){var b=document.createElement('button');b.className='sel-btn nbtn';b.textContent=n;b.style.fontSize='1.3rem';b.style.minWidth='46px';b.onclick=function(){rN(n);};ngEl.appendChild(b);})(i);}
 var cogEl=document.getElementById('cog');
 colorData.forEach(function(c,i){var b=document.createElement('button');b.className='sel-btn cobtn';b.textContent=c.name;b.style.background=c.bg;b.style.color=c.txt;b.onclick=function(){rC(i);};cogEl.appendChild(b);});
 var shgEl=document.getElementById('shg');
@@ -544,7 +437,7 @@ rL('A');rN(1);rC(0);rSh(0);
 
 /* ══ GK DATA ══ */
 var gkCats=[{name:"Personal & Daily Life",icon:"👦",color:"#E91E63",bg:"#FCE4EC",border:"#F48FB1"},{name:"Colors",icon:"🎨",color:"#F9A825",bg:"#FFFDE7",border:"#FFE082"},{name:"Numbers",icon:"🔢",color:"#1976D2",bg:"#E3F2FD",border:"#90CAF9"},{name:"Shapes",icon:"🔷",color:"#9C27B0",bg:"#F3E5F5",border:"#CE93D8"},{name:"Animals",icon:"🐾",color:"#FF8E53",bg:"#FFF3E0",border:"#FFCC80"},{name:"Birds",icon:"🐦",color:"#29B6F6",bg:"#E1F5FE",border:"#81D4FA"},{name:"Fruits",icon:"🍎",color:"#FF6B6B",bg:"#FFEBEE",border:"#EF9A9A"},{name:"Vegetables",icon:"🥦",color:"#43A047",bg:"#E8F5E9",border:"#A5D6A7"},{name:"Transport",icon:"🚗",color:"#F57C00",bg:"#FFF3E0",border:"#FFCC80"},{name:"Body Parts",icon:"🧒",color:"#E91E63",bg:"#FCE4EC",border:"#F48FB1"},{name:"India GK",icon:"🇮🇳",color:"#FF6B00",bg:"#FFF3E0",border:"#FFCC80"},{name:"Thinking Questions",icon:"💡",color:"#6A1B9A",bg:"#F3E5F5",border:"#CE93D8"}];
-var gkQs=[["👦","What is your name?","My name is Reyan Dutta"],["🎈","How old are you?","I am 3 years old"],["🇮🇳","What country do you live in?","India"],["🏙️","What city do you live in?","Hyderabad"],["🛏️","Where do you sleep?","On my bed"],["💧","What do you drink when thirsty?","Water"],["🪥","What do you use to brush teeth?","Toothbrush"],["👟","What do you wear on your feet?","Shoes"],["🏫","Where do you go to study?","School"],["🎒","What do you use to carry books?","A bag"],["☀️","What color is the sun?","Yellow"],["🌿","What color is grass?","Green"],["🌤️","What color is the sky?","Blue"],["🥛","What color is milk?","White"],["🖤","What color is coal?","Black"],["🍌","What color is a banana?","Yellow"],["🍎","What color is an apple usually?","Red"],["🍊","What color is an orange fruit?","Orange"],["🍫","What color is chocolate?","Brown"],["🍓","What color is a strawberry?","Red"],["🍇","What color are grapes usually?","Green or Purple"],["🥕","What color is a carrot?","Orange"],["🍅","What color is a tomato?","Red"],["🍋","What color is a lemon?","Yellow"],["❄️","What color is snow?","White"],["2️⃣","What comes after 1?","2"],["6️⃣","What comes after 5?","6"],["9️⃣","What comes before 10?","9"],["🖐️","How many fingers on one hand?","5 fingers"],["👀","How many eyes do we have?","2 eyes"],["👂","How many ears do we have?","2 ears"],["🐶","How many legs does a dog have?","4 legs"],["🚲","How many wheels does a bicycle have?","2 wheels"],["🚗","How many wheels does a car have?","4 wheels"],["📅","How many days in a week?","7 days"],["📆","How many months in a year?","12 months"],["🔟","What comes after 10?","11"],["4️⃣","What comes before 5?","4"],["8️⃣","Which is bigger: 8 or 3?","8 is bigger"],["2️⃣","Which is smaller: 2 or 7?","2 is smaller"],["⭕","Which shape is like a ball?","Circle"],["🔺","Which shape has three sides?","Triangle"],["🟥","Which shape has four equal sides?","Square"],["🚪","Which shape looks like a door?","Rectangle"],["🥚","Which shape is like an egg?","Oval"],["⭐","Which shape has five points?","Star"],["🪙","Which shape is used for coins?","Circle"],["🪟","Which shape is used for windows?","Square or Rectangle"],["🍕","Which shape is a pizza slice?","Triangle"],["💎","Which shape looks like a kite?","Diamond"],["🐱","Which animal says meow?","Cat"],["🐶","Which animal says woof?","Dog"],["🐮","Which animal says moo?","Cow"],["🦁","Which animal is king of the jungle?","Lion"],["🐘","Which animal has a long trunk?","Elephant"],["🦓","Which animal has black and white stripes?","Zebra"],["🐸","Which animal jumps and croaks?","Frog"],["🥛","Which animal gives us milk?","Cow"],["🦒","Which animal has a very long neck?","Giraffe"],["🐒","Which animal likes bananas?","Monkey"],["🐪","Which animal has humps and lives in desert?","Camel"],["🐯","Which animal roars?","Lion and Tiger"],["🦘","Which animal carries babies in a pouch?","Kangaroo"],["🐢","Which animal moves very slowly?","Turtle"],["🐟","Which animal lives in water and has fins?","Fish"],["🐒","Which animal swings on trees?","Monkey"],["🐱","Which animal hunts mice?","Cat"],["🐳","Which animal is very big in the ocean?","Whale"],["🐷","Which animal is pink and likes mud?","Pig"],["🐴","Which animal says neigh?","Horse"],["🦚","Which bird is the national bird of India?","Peacock"],["🦆","Which bird says quack?","Duck"],["🦉","Which bird hoots at night?","Owl"],["🦜","Which bird is green and can talk?","Parrot"],["🦆","Which bird swims and quacks?","Duck"],["🦚","Which bird spreads colorful feathers?","Peacock"],["🐦","Which bird is small and chirps?","Sparrow"],["🐦","Which bird is black and says caw?","Crow"],["🥚","Which bird lays eggs?","All birds lay eggs"],["🦅","Which bird flies high in the sky?","Eagle"],["🍌","Which fruit is yellow and long?","Banana"],["🍎","Which fruit keeps the doctor away?","Apple"],["🥭","What is the national fruit of India?","Mango"],["🍇","Which fruit grows in bunches?","Grapes"],["🍉","Which fruit has red inside and green outside?","Watermelon"],["🍍","Which fruit has a crown on top?","Pineapple"],["🥥","Which fruit grows on coconut tree?","Coconut"],["🍊","Which fruit is orange in color?","Orange"],["🍓","Which fruit is small and red?","Strawberry"],["🍉","Which fruit is juicy in summer?","Watermelon"],["🥕","Which vegetable is orange and rabbits like?","Carrot"],["🧅","Which vegetable makes you cry when cutting?","Onion"],["🥔","Which vegetable is used to make fries?","Potato"],["🍅","Which vegetable is round and red?","Tomato"],["🥬","Which vegetable is green and leafy?","Spinach"],["🍆","Which vegetable is purple?","Brinjal"],["🥒","Which vegetable is long and green?","Cucumber"],["🥔","Which vegetable grows underground?","Potato"],["🥒","Which vegetable is used in salad?","Cucumber"],["🥦","Which vegetable looks like a small tree?","Broccoli"],["✈️","Which vehicle flies in the sky?","Airplane"],["🚂","Which vehicle runs on tracks?","Train"],["⛵","Which vehicle sails in water?","Boat"],["🚲","Which vehicle has two wheels?","Bicycle"],["🚌","Which vehicle takes children to school?","School Bus"],["🚒","Which vehicle puts out fire?","Fire Truck"],["🚑","Which vehicle takes sick people to hospital?","Ambulance"],["🚁","Which vehicle flies with rotating blades?","Helicopter"],["🚗","Which vehicle runs on roads?","Car"],["🌊","Which vehicle travels under the sea?","Submarine"],["👀","Which body part helps you see?","Eyes"],["👂","Which body part helps you hear?","Ears"],["👃","Which body part helps you smell?","Nose"],["👅","Which body part helps you taste?","Tongue"],["🦵","Which body part helps you walk?","Legs"],["🖐️","Which body part helps you hold things?","Hands"],["🧠","Which body part helps you think?","Brain"],["❤️","Which body part pumps blood?","Heart"],["🦷","Which body part do we brush every day?","Teeth"],["🫁","Which body part helps us breathe?","Lungs"],["🗺️","What is the name of our country?","India"],["👨‍💼","Who is the Prime Minister of India?","Narendra Modi"],["🐯","What is the national animal of India?","Tiger"],["🦚","What is the national bird of India?","Peacock"],["🪷","What is the national flower of India?","Lotus"],["🥭","What is the national fruit of India?","Mango"],["🎶","What is the national anthem of India?","Jana Gana Mana"],["🎉","What do we celebrate on 15 August?","Independence Day"],["🥳","What do we celebrate on 26 January?","Republic Day"],["🇮🇳","What colors are in the Indian flag?","Saffron, White and Green"],["☂️","What do we use when it rains?","Umbrella"],["🧥","What do we wear when it is cold?","Jacket"],["🛏️","What do we sleep on?","Bed"],["✂️","What do we use to cut paper?","Scissors"],["⏰","What do we use to tell time?","Clock"],["📱","What do we use to call someone far away?","Phone"],["🔦","What do we use to see in the dark?","Torch"],["🖊️","What do we use to write on a board?","Chalk or Marker"],["🪥","What do we use to clean our teeth?","Toothbrush"],["🔑","What do we use to open a lock?","Key"],["🍳","What do we use to cook food?","Stove"],["🥛","What do we drink in the morning often?","Milk"],["📚","What do we read to learn stories?","Book"],["🧹","What do we use to clean the floor?","Broom or Mop"],["🛍️","What do we use to carry groceries?","Bag"],["🛁","What do we use to dry our body after bath?","Towel"],["🧼","What do we use to wash hands?","Soap"],["🔭","What do we use to see far away?","Binoculars"],["🖍️","What do we use to draw pictures?","Crayons"],["🎵","What do we use to listen to music?","Speaker or Headphones"]];
+var gkQs=[["👦","What is your name?","My name is Reyan Dutta"],["🎈","How old are you?","I am 3 years old"],["🇮🇳","What country do you live in?","India"],["🏙️","What city do you live in?","Hyderabad"],["🛏️","Where do you sleep?","On my bed"],["💧","What do you drink when thirsty?","Water"],["🪥","What do you use to brush teeth?","Toothbrush"],["👟","What do you wear on your feet?","Shoes"],["🏫","Where do you go to study?","School"],["🎒","What do you use to carry books?","A bag"],["☀️","What color is the sun?","Yellow"],["🌿","What color is grass?","Green"],["🌤️","What color is the sky?","Blue"],["🥛","What color is milk?","White"],["🖤","What color is coal?","Black"],["🍌","What color is a banana?","Yellow"],["🍎","What color is an apple usually?","Red"],["🍊","What color is an orange fruit?","Orange"],["🍫","What color is chocolate?","Brown"],["🍓","What color is a strawberry?","Red"],["🍇","What color are grapes usually?","Green or Purple"],["🥕","What color is a carrot?","Orange"],["🍅","What color is a tomato?","Red"],["🍋","What color is a lemon?","Yellow"],["❄️","What color is snow?","White"],["2️⃣","What comes after 1?","2"],["6️⃣","What comes after 5?","6"],["9️⃣","What comes before 10?","9"],["🖐️","How many fingers on one hand?","5 fingers"],["👀","How many eyes do we have?","2 eyes"],["👂","How many ears do we have?","2 ears"],["🐶","How many legs does a dog have?","4 legs"],["🚲","How many wheels does a bicycle have?","2 wheels"],["🚗","How many wheels does a car have?","4 wheels"],["📅","How many days in a week?","7 days"],["📆","How many months in a year?","12 months"],["🔟","What comes after 10?","11"],["4️⃣","What comes before 5?","4"],["8️⃣","Which is bigger: 8 or 3?","8 is bigger"],["2️⃣","Which is smaller: 2 or 7?","2 is smaller"],["⭕","Which shape is like a ball?","Circle"],["🔺","Which shape has three sides?","Triangle"],["🟥","Which shape has four equal sides?","Square"],["🚪","Which shape looks like a door?","Rectangle"],["🥚","Which shape is like an egg?","Oval"],["⭐","Which shape has five points?","Star"],["🪙","Which shape is used for coins?","Circle"],["🪟","Which shape is used for windows?","Square or Rectangle"],["🍕","Which shape is a pizza slice?","Triangle"],["💎","Which shape looks like a kite?","Diamond"],["🐱","Which animal says meow?","Cat"],["🐶","Which animal says woof?","Dog"],["🐮","Which animal says moo?","Cow"],["🦁","Which animal is king of the jungle?","Lion"],["🐘","Which animal has a long trunk?","Elephant"],["🦓","Which animal has black and white stripes?","Zebra"],["🐸","Which animal jumps and croaks?","Frog"],["🥛","Which animal gives us milk?","Cow"],["🦒","Which animal has a very long neck?","Giraffe"],["🐒","Which animal likes bananas?","Monkey"],["🐪","Which animal has humps, lives in desert?","Camel"],["🐯","Which animal roars?","Lion and Tiger"],["🦘","Which animal carries babies in a pouch?","Kangaroo"],["🐢","Which animal moves very slowly?","Turtle"],["🐟","Which animal lives in water and has fins?","Fish"],["🐒","Which animal swings on trees?","Monkey"],["🐱","Which animal hunts mice?","Cat"],["🐳","Which animal is very big in the ocean?","Whale"],["🐷","Which animal is pink and likes mud?","Pig"],["🐴","Which animal says neigh?","Horse"],["🦚","Which bird is the national bird of India?","Peacock"],["🦆","Which bird says quack?","Duck"],["🦉","Which bird hoots at night?","Owl"],["🦜","Which bird is green and can talk?","Parrot"],["🦆","Which bird swims and quacks?","Duck"],["🦚","Which bird spreads colorful feathers?","Peacock"],["🐦","Which bird is small and chirps?","Sparrow"],["🐦","Which bird is black and says caw?","Crow"],["🥚","Which bird lays eggs?","All birds lay eggs"],["🦅","Which bird flies high in the sky?","Eagle"],["🍌","Which fruit is yellow and long?","Banana"],["🍎","Which fruit keeps the doctor away?","Apple"],["🥭","What is the national fruit of India?","Mango"],["🍇","Which fruit grows in bunches?","Grapes"],["🍉","Which fruit has red inside and green outside?","Watermelon"],["🍍","Which fruit has a crown on top?","Pineapple"],["🥥","Which fruit grows on coconut tree?","Coconut"],["🍊","Which fruit is orange in color?","Orange"],["🍓","Which fruit is small and red?","Strawberry"],["🍉","Which fruit is juicy in summer?","Watermelon"],["🥕","Which vegetable is orange and rabbits like?","Carrot"],["🧅","Which vegetable makes you cry when cutting?","Onion"],["🥔","Which vegetable is used to make fries?","Potato"],["🍅","Which vegetable is round and red?","Tomato"],["🥬","Which vegetable is green and leafy?","Spinach"],["🍆","Which vegetable is purple?","Brinjal"],["🥒","Which vegetable is long and green?","Cucumber"],["🥔","Which vegetable grows underground?","Potato"],["🥒","Which vegetable is used in salad?","Cucumber"],["🥦","Which vegetable looks like a small tree?","Broccoli"],["✈️","Which vehicle flies in the sky?","Airplane"],["🚂","Which vehicle runs on tracks?","Train"],["⛵","Which vehicle sails in water?","Boat"],["🚲","Which vehicle has two wheels?","Bicycle"],["🚌","Which vehicle takes children to school?","School Bus"],["🚒","Which vehicle puts out fire?","Fire Truck"],["🚑","Which vehicle takes sick people to hospital?","Ambulance"],["🚁","Which vehicle flies with rotating blades?","Helicopter"],["🚗","Which vehicle runs on roads?","Car"],["🌊","Which vehicle travels under the sea?","Submarine"],["👀","Which body part helps you see?","Eyes"],["👂","Which body part helps you hear?","Ears"],["👃","Which body part helps you smell?","Nose"],["👅","Which body part helps you taste?","Tongue"],["🦵","Which body part helps you walk?","Legs"],["🖐️","Which body part helps you hold things?","Hands"],["🧠","Which body part helps you think?","Brain"],["❤️","Which body part pumps blood?","Heart"],["🦷","Which body part do we brush every day?","Teeth"],["🫁","Which body part helps us breathe?","Lungs"],["🗺️","What is the name of our country?","India"],["👨‍💼","Who is the Prime Minister of India?","Narendra Modi"],["🐯","What is the national animal of India?","Tiger"],["🦚","What is the national bird of India?","Peacock"],["🪷","What is the national flower of India?","Lotus"],["🥭","What is the national fruit of India?","Mango"],["🎶","What is the national anthem of India?","Jana Gana Mana"],["🎉","What do we celebrate on 15 August?","Independence Day"],["🥳","What do we celebrate on 26 January?","Republic Day"],["🇮🇳","What colors are in the Indian flag?","Saffron, White and Green"],["☂️","What do we use when it rains?","Umbrella"],["🧥","What do we wear when it is cold?","Jacket"],["🛏️","What do we sleep on?","Bed"],["✂️","What do we use to cut paper?","Scissors"],["⏰","What do we use to tell time?","Clock"],["📱","What do we use to call someone far away?","Phone"],["🔦","What do we use to see in the dark?","Torch"],["🖊️","What do we use to write on a board?","Chalk or Marker"],["🪥","What do we use to clean our teeth?","Toothbrush"],["🔑","What do we use to open a lock?","Key"],["🍳","What do we use to cook food?","Stove"],["🥛","What do we drink in the morning often?","Milk"],["📚","What do we read to learn stories?","Book"],["🧹","What do we use to clean the floor?","Broom or Mop"],["🛍️","What do we use to carry groceries?","Bag"],["🛁","What do we use to dry our body after bath?","Towel"],["🧼","What do we use to wash hands?","Soap"],["🔭","What do we use to see far away?","Binoculars"],["🖍️","What do we use to draw pictures?","Crayons"],["🎵","What do we use to listen to music?","Speaker or Headphones"]];
 var gkBounds=[0,10,25,40,50,70,80,90,100,110,120,130,150];
 
 /* ══ BUILD GK ══ */
@@ -555,15 +448,20 @@ var gkBounds=[0,10,25,40,50,70,80,90,100,110,120,130,150];
     html+='<div class="gk-cat-section">'
       +'<div class="gk-cat-hdr" style="background:'+cat.color+'">'
       +'<span class="gci">'+cat.icon+'</span>'
-      +'<div><div class="gct">'+cat.name+'</div>'
-      +'<div class="gcc">'+qs.length+' questions</div></div></div>'
+      +'<div><div class="gct">'+cat.name+'</div><div class="gcc">'+qs.length+' questions</div></div></div>'
       +'<div class="gk-grid">';
     qs.forEach(function(q,i){
-      html+='<div class="gk-card" style="background:'+cat.bg+';border:2px solid '+cat.border+'" onclick="revGK(this,'+JSON.stringify(q[2])+')">'
+      var qEsc=q[1].replace(/'/g,"\\'").replace(/"/g,'&quot;');
+      var aEsc=q[2].replace(/'/g,"\\'").replace(/"/g,'&quot;');
+      var uid='gk_'+ci+'_'+i;
+      html+='<div class="gk-card" style="background:'+cat.bg+';border:2px solid '+cat.border+'">'
         +'<div class="gk-num">'+(i+1)+'</div>'
         +'<div class="gk-top"><span class="gk-em">'+q[0]+'</span><div class="gk-q">'+q[1]+'</div></div>'
-        +'<div class="gk-ans">✅ '+q[2]+'</div>'
-        +'<div class="gk-tap">👆 Tap to see answer</div>'
+        +'<div class="gk-actions">'
+        +'<button class="gk-btn gk-btn-read" onclick="gkSpeak(\''+qEsc+'\')">🔵 Read Q</button>'
+        +'<button class="gk-btn gk-btn-ans" onclick="showGKAns(\''+uid+'\',\''+aEsc+'\')">🟢 Answer</button>'
+        +'</div>'
+        +'<div class="gk-ans" id="'+uid+'"></div>'
         +'</div>';
     });
     html+='</div></div>';
@@ -571,11 +469,12 @@ var gkBounds=[0,10,25,40,50,70,80,90,100,110,120,130,150];
   document.getElementById('gkWrap').innerHTML=html;
 })();
 
-function revGK(el,ans){
-  var a=el.querySelector('.gk-ans');
-  var t=el.querySelector('.gk-tap');
-  if(!a.classList.contains('show')){a.classList.add('show');if(t)t.style.display='none';}
-  speak(ans);
+function showGKAns(uid,ans){
+  var el=document.getElementById(uid);
+  if(!el)return;
+  el.textContent='✅ '+ans;
+  el.classList.add('show');
+  gkSpeak(ans);
 }
 </script>
 </body>
